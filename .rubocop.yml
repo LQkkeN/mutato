@@ -1,0 +1,161 @@
+# Every cop is on; each exception below says why. Where the Ruby Style Guide,
+# https://rubystyle.guide, takes a side, the settings follow it.
+plugins:
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.2
+  EnabledByDefault: true
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - spec/fixtures/**/* # mutation targets; specs pin their line numbers
+    - vendor/**/*
+
+Layout/LineLength:
+  Max: 100
+
+# Break after the opening bracket, one element per line, indented one step,
+# the closing bracket on its own line; nothing aligned to a column.
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/ParameterAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/ArrayAlignment:
+  EnforcedStyle: with_fixed_indentation
+Layout/FirstArgumentIndentation:
+  EnforcedStyle: consistent
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: start_of_line
+Layout/BlockAlignment:
+  EnforcedStyleAlignWith: start_of_line
+Layout/BeginEndAlignment:
+  EnforcedStyleAlignWith: start_of_line
+Layout/MultilineAssignmentLayout:
+  EnforcedStyle: same_line
+Layout/ExtraSpacing:
+  AllowForAlignment: false
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: key
+  EnforcedColonStyle: key
+Layout/RedundantLineBreak:
+  InspectBlocks: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+Style/StringLiteralsInInterpolation:
+  EnforcedStyle: double_quotes
+
+# Every case handles the values it does not expect.
+Style/MissingElse:
+  EnforcedStyle: case
+
+# The guide omits parentheses for Kernel methods with "keyword" status and
+# for DSLs (RSpec, Rake, the gemspec); everything else takes them.
+Style/MethodCallWithArgsParentheses:
+  AllowedMethods:
+    - abort
+    - add_dependency
+    - describe
+    - exit!
+    - load
+    - not_to
+    - puts
+    - raise
+    - require
+    - require_relative
+    - sleep
+    - to
+# The guide: `{ id:, file: }` when key and value are the same.
+Style/HashSyntax:
+  EnforcedShorthandSyntax: always
+# The guide asks for `fetch` where a key must be present and `[]` where it may
+# be missing, which the cop cannot tell apart.
+Style/HashLookupMethod:
+  Enabled: false
+# The guide calls `raise "message"` good, which this cop forbids.
+Style/ImplicitRuntimeError:
+  Enabled: false
+
+# A literal laid out one element per line counts as one line.
+Metrics/AbcSize:
+  CountRepeatedAttributes: false
+Metrics/BlockLength:
+  CountAsOne: [array, hash, heredoc, method_call]
+Metrics/ClassLength:
+  CountAsOne: [array, hash, heredoc, method_call]
+Metrics/MethodLength:
+  CountAsOne: [array, hash, heredoc, method_call]
+Metrics/ModuleLength:
+  CountAsOne: [array, hash, heredoc, method_call]
+Metrics/ParameterLists:
+  Max: 3
+RSpec/ExampleLength:
+  CountAsOne: [array, hash, heredoc, method_call]
+
+# Comments are kept to the few that prevent a mistake.
+Style/Documentation:
+  Enabled: false
+Style/DocumentationMethod:
+  Enabled: false
+Style/Copyright:
+  Enabled: false
+Bundler/GemComment:
+  Enabled: false
+
+# Contradicts the one-parameter-per-line layout when a signature does not fit.
+Style/MultilineMethodSignature:
+  Enabled: false
+# Alignment, which the layout above forbids.
+RSpec/AlignLeftLetBrace:
+  Enabled: false
+RSpec/AlignRightLetBrace:
+  Enabled: false
+# A leading `::` on every constant is noise.
+Lint/ConstantResolution:
+  Enabled: false
+# Flags every chained `map`/`select`; readability comes first.
+Performance/ChainArrayAllocation:
+  Enabled: false
+# Dictates `|a, e|` as block parameter names.
+Style/SingleLineBlockParams:
+  Enabled: false
+# String keys are the data: operators, JSON.
+Style/StringHashKeys:
+  Enabled: false
+# Reek rejects one-letter names.
+Naming/RescuedExceptionsVariableName:
+  PreferredName: error
+# Dir.glob sorts each directory's entries, not the tree: lib/app.rb would follow lib/app/.
+Lint/RedundantDirGlobSort:
+  Enabled: false
+
+# A forked child reports any failure, Ruby's own included, to its parent over
+# a pipe, and points file descriptors 1 and 2 at its log.
+Lint/InheritException:
+  Exclude: [lib/mutato/soft_timeout.rb]
+Lint/RescueException:
+  Exclude: [lib/mutato/child.rb]
+Security/MarshalLoad:
+  Exclude: [lib/mutato/child.rb]
+Style/GlobalStdStream:
+  Exclude: [lib/mutato/child.rb]
+
+# A nested class in its own file, as the guide's file-classes rule has it,
+# reopens its parent for that one constant; the parent is no static class.
+Style/StaticClass:
+  Exclude:
+    - lib/mutato/coverage_listener/tally.rb
+    - lib/mutato/subjects/scope.rb
+    - lib/mutato/visitor/cursor.rb
+    - lib/mutato/visitor/walk.rb

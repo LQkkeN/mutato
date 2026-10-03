@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Before mutato's own files load, so that it can run on itself.
+require "coverage"
+Coverage.start(lines: true) unless Coverage.running?
+require "bundler/setup" if File.exist?("Gemfile")
+begin
+  require_relative "../lib/mutato"
+rescue LoadError => error
+  hint = "Add mutato to the project's Gemfile; its dependency brings the prism it needs."
+  abort "mutato: #{error.message}. #{hint}"
+end
+if Gem::Version.new(Prism::VERSION) < Gem::Version.new("1.8")
+  abort "mutato: prism #{Prism::VERSION} is too old, 1.8 is needed"
+end
+require_relative "../lib/mutato/cli"
+
+code = Mutato::CLI.call(ARGV)
+# exit!, not exit: the project's at_exit handlers must not run.
+exit! code

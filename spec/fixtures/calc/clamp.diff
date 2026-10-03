@@ -1,0 +1,7 @@
+--- a/lib/calc.rb
++++ b/lib/calc.rb
+@@ -14,2 +14,2 @@
+-      return low if x < low
+-      return high if x > high
++      return low if x < low
++      return high if x > high
