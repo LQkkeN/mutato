@@ -6,6 +6,8 @@ Notable changes for users of mutato. The format follows
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-03
+
 ### Added
 
 - First release: mutation testing for RSpec, on Ruby 3.2 and later.
