@@ -1,0 +1,45 @@
+name: Changelog
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+
+permissions:
+  contents: read
+
+jobs:
+  changelog:
+    name: Changelog
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      BASE: ${{ github.event.pull_request.base.sha }}
+      HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: ShellCheck the hooks
+        run: shellcheck .githooks/*
+      - name: Code that ships comes with a changelog line
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'no changelog') }}
+        run: |
+          changed=$(git diff --name-only "$BASE...$HEAD_SHA")
+          if grep -qE '^(lib/|exe/|mutato\.gemspec)' <<<"$changed"; then
+            grep -qx CHANGELOG.md <<<"$changed" || {
+              echo "Add a line under [Unreleased] in CHANGELOG.md, or label the PR 'no changelog'."
+              exit 1
+            }
+          fi
+      - name: A new version comes with its changelog heading
+        run: |
+          fork=$(git merge-base "$BASE" "$HEAD_SHA")
+          # A first version file has no earlier version to move on from.
+          git cat-file -e "$fork:lib/mutato/version.rb" 2>/dev/null || exit 0
+          git diff --quiet "$fork" "$HEAD_SHA" -- lib/mutato/version.rb && exit 0
+          version=$(git show "$HEAD_SHA:lib/mutato/version.rb" | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
+          git show "$HEAD_SHA:CHANGELOG.md" | grep -qF "## [$version] - " || {
+            echo "Version $version needs a '## [$version] - YYYY-MM-DD' heading in CHANGELOG.md."
+            exit 1
+          }

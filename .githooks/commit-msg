@@ -1,0 +1,21 @@
+#!/bin/bash
+# Your commit format, checked as the message is written.
+export LC_ALL=C.UTF-8 # lengths in characters, not bytes
+msg=$(sed '/^# -* >8 -*$/q' "$1" | git stripspace --strip-comments)
+subject=$(head -n 1 <<<"$msg")
+
+case "$subject" in
+  "Merge "* | "Revert \""* | fixup!* | squash!* | amend!*) exit 0 ;;
+esac
+
+problems=()
+[ "${#subject}" -le 50 ]             || problems+=("the subject is over 50 characters")
+[[ "$subject" == [A-Z]* ]]           || problems+=("the subject must start with a capital letter")
+[[ "$subject" != *. ]]               || problems+=("the subject must not end with a period")
+[ -z "$(sed -n 2p <<<"$msg")" ]      || problems+=("the second line must be blank")
+while IFS= read -r line; do
+  [ "${#line}" -le 72 ] || { problems+=("body lines must be at most 72 characters"); break; }
+done < <(tail -n +3 <<<"$msg")
+
+for problem in "${problems[@]}"; do echo "commit-msg: $problem" >&2; done
+[ "${#problems[@]}" -eq 0 ]
