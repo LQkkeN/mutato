@@ -1,0 +1,39 @@
+name: Release
+
+# A signed tag pushed by the maintainer; the job only builds and publishes.
+on:
+  push:
+    tags: ['v*']
+
+permissions: {}
+
+jobs:
+  release:
+    name: Push gem to RubyGems.org
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: release
+    permissions:
+      contents: read
+      id-token: write # trusted publishing: no RubyGems key is stored anywhere
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@14594264cd68ce8a2345dd349bc3d138a4ef85c8 # v1.327.0
+        with:
+          ruby-version: ruby
+      - run: bundle install # no cache: one written by another run must not reach a release
+      - name: The tag, the gem and the changelog name the same version
+        run: |
+          version=${GITHUB_REF_NAME#v}
+          gem=$(ruby -Ilib -rmutato/version -e 'print Mutato::VERSION')
+          [ "$gem" = "$version" ] || {
+            echo "The tag says $version, but lib/mutato/version.rb says $gem."
+            exit 1
+          }
+          grep -qF "## [$version] - " CHANGELOG.md || {
+            echo "CHANGELOG.md has no '## [$version] - YYYY-MM-DD' heading."
+            exit 1
+          }
+      - uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
