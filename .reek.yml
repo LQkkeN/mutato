@@ -1,0 +1,13 @@
+---
+detectors:
+  IrresponsibleModule:
+    enabled: false # comments are kept to the few that prevent a mistake
+  UnusedPrivateMethod:
+    enabled: true
+  NilCheck:
+    enabled: false # Prism's optional children are nil, and rubocop asks for `&.` where reek forbids it
+  FeatureEnvy:
+    enabled: false # a visitor over Prism's tree works on nodes it cannot give methods to
+
+exclude_paths:
+  - spec/fixtures

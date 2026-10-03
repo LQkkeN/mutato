@@ -1,0 +1,275 @@
+2b289f3556fc  lib/calc.rb:4:7: [value] replace body of Fixture::Calc.default_limit with nil  (Fixture::Calc.default_limit)  lines 4-4
+2327e88fb812  lib/calc.rb:4:7: [value] replace body of Fixture::Calc.default_limit with 0  (Fixture::Calc.default_limit)  lines 4-4
+3a37cb3e674a  lib/calc.rb:10:7: [value] replace body of Fixture::Calc#add with nil  (Fixture::Calc#add)  lines 10-10
+968c86db16b7  lib/calc.rb:10:9: [arithmetic] replace `+` with `-`  (Fixture::Calc#add)  lines 10-10
+610d8fcdbc09  lib/calc.rb:14:7: [value] replace body of Fixture::Calc#clamp with nil  (Fixture::Calc#clamp)  lines 14-17
+ed49f2d13215  lib/calc.rb:14:7: [statement] delete statement `return low if x < low`  (Fixture::Calc#clamp)  lines 14-14
+06a97d0b3cae  lib/calc.rb:15:7: [statement] delete statement `return high if x > high`  (Fixture::Calc#clamp)  lines 15-15
+7f027a54b064  lib/calc.rb:14:21: [condition] replace condition `x < low` with true  (Fixture::Calc#clamp)  lines 14-14
+86bee8e1681f  lib/calc.rb:14:23: [relational] replace `<` with `<=`  (Fixture::Calc#clamp)  lines 14-14
+325ae58be524  lib/calc.rb:14:23: [relational] replace `<` with `!=`  (Fixture::Calc#clamp)  lines 14-14
+184571214557  lib/calc.rb:14:21: [relational] replace `x < low` with false  (Fixture::Calc#clamp)  lines 14-14
+c00d9ee5c247  lib/calc.rb:15:22: [condition] replace condition `x > high` with true  (Fixture::Calc#clamp)  lines 15-15
+0b100be99405  lib/calc.rb:15:24: [relational] replace `>` with `>=`  (Fixture::Calc#clamp)  lines 15-15
+8eab8718f5e4  lib/calc.rb:15:24: [relational] replace `>` with `!=`  (Fixture::Calc#clamp)  lines 15-15
+0701ff54adcd  lib/calc.rb:15:22: [relational] replace `x > high` with false  (Fixture::Calc#clamp)  lines 15-15
+a3ca8a829735  lib/calc.rb:21:7: [value] replace body of Fixture::Calc#describe with nil  (Fixture::Calc#describe)  lines 21-22
+b3b1aa0d239e  lib/calc.rb:22:7: [condition] replace condition `items.empty?` with true  (Fixture::Calc#describe)  lines 22-22
+539c67952faa  lib/calc.rb:22:7: [condition] replace condition `items.empty?` with false  (Fixture::Calc#describe)  lines 22-22
+cb2ce69a32e9  lib/calc.rb:22:13: [swap-method] replace `.empty?` with `.any?`  (Fixture::Calc#describe)  lines 22-22
+51d4a3f509c5  lib/calc.rb:22:31: [statement] delete statement `"#{items.size} items"`  (Fixture::Calc#describe)  lines 22-22
+7e27c817e2b3  lib/calc.rb:26:7: [value] replace body of Fixture::Calc#ratio with nil  (Fixture::Calc#ratio)  lines 26-26
+48c338539df6  lib/calc.rb:26:9: [arithmetic] replace `/` with `*`  (Fixture::Calc#ratio)  lines 26-26
+c305557b5473  lib/calc.rb:26:7: [arithmetic] swap operands of `/`  (Fixture::Calc#ratio)  lines 26-26
+753d32741789  lib/calc.rb:37:9: [value] replace body of Fixture::Calc::Pair#doubled with nil  (Fixture::Calc::Pair#doubled)  lines 37-37
+f3fb68a7fb3b  lib/calc.rb:37:11: [arithmetic] replace `*` with `/`  (Fixture::Calc::Pair#doubled)  lines 37-37
+06a309973b1b  lib/calc.rb:42:7: [value] replace body of Fixture::Calc.define_double with nil  (Fixture::Calc.define_double)  lines 42-44 blocks 43,44
+1d661871187f  lib/calc.rb:43:9: [statement] delete statement `x * 2`  (Fixture::Calc.define_double)  lines 43-43 via 42-44 blocks 43,44
+5431d5864da2  lib/calc.rb:43:11: [arithmetic] replace `*` with `/`  (Fixture::Calc.define_double)  lines 43-43 via 42-44 blocks 43,44
+b7b9f3246941  lib/calc.rb:56:7: [value] replace body of Fixture::Calc#secret with nil  (Fixture::Calc#secret)  lines 56-56
+e0148c3a2adf  lib/calc.rb:56:7: [value] replace body of Fixture::Calc#secret with []  (Fixture::Calc#secret)  lines 56-56
+dff35e62e144  lib/calc.rb:56:8: [element] drop `1`  (Fixture::Calc#secret)  lines 56-56
+ab67316f235d  lib/calc.rb:56:11: [element] drop `2`  (Fixture::Calc#secret)  lines 56-56
+8fb4d0922db7  lib/calc.rb:56:14: [element] drop `3`  (Fixture::Calc#secret)  lines 56-56
+1cbd405ace2b  lib/edge.rb:4:7: [value] replace body of Fixture::Edge#codes with nil  (Fixture::Edge#codes)  lines 4-7
+c256e0b1777d  lib/edge.rb:4:7: [value] replace body of Fixture::Edge#codes with []  (Fixture::Edge#codes)  lines 4-7
+ee4da7969f74  lib/edge.rb:5:9: [element] drop `1`  (Fixture::Edge#codes)  lines 4-7
+6ac86e5ba5e3  lib/edge.rb:6:9: [element] drop `2`  (Fixture::Edge#codes)  lines 4-7
+dcd4b5afbcf9  lib/edge.rb:11:7: [value] replace body of Fixture::Edge#guarded with nil  (Fixture::Edge#guarded)  lines 11-15
+aa994c10550a  lib/edge.rb:11:7: [value] replace body of Fixture::Edge#guarded with ""  (Fixture::Edge#guarded)  lines 11-15
+2307c546b2e1  lib/edge.rb:11:7: [statement] delete statement `raise ArgumentError, <<~MSG if x.nil?`  (Fixture::Edge#guarded)  lines 11-11
+46fbf59aaca2  lib/edge.rb:11:38: [condition] replace condition `x.nil?` with true  (Fixture::Edge#guarded)  lines 11-11
+2d5ce9337624  lib/edge.rb:19:7: [value] replace body of Fixture::Edge#cached with nil  (Fixture::Edge#cached)  lines 19-21
+ad213591adce  lib/edge.rb:19:25: [condition] replace condition `@cached` with true  (Fixture::Edge#cached)  lines 19-19
+626ead0e5f96  lib/edge.rb:25:7: [value] replace body of Fixture::Edge#shout with nil  (Fixture::Edge#shout)  lines 25-28
+b360ca073425  lib/edge.rb:25:7: [statement] delete statement `message = <<~MSG`  (Fixture::Edge#shout)  lines 25-25
+c5f10b853ccf  lib/more.rb:6:7: [value] replace body of Fixture::Thing#z with nil  (Fixture::Thing#z)  lines 6-6
+8c326375eeed  lib/more.rb:6:7: [value] replace body of Fixture::Thing#z with 0  (Fixture::Thing#z)  lines 6-6
+85afb1e3ae58  lib/more.rb:12:7: [value] replace body of Fixture::Util.u with nil  (Fixture::Util.u)  lines 12-12
+b87599190d08  lib/more.rb:12:7: [value] replace body of Fixture::Util.u with 0  (Fixture::Util.u)  lines 12-12
+92b58890e9f1  lib/more.rb:18:7: [value] replace body of Fixture::Point#dbl with nil  (Fixture::Point#dbl)  lines 18-18
+93868df7d5bf  lib/more.rb:18:9: [arithmetic] replace `*` with `/`  (Fixture::Point#dbl)  lines 18-18
+73613019b44d  lib/more.rb:24:7: [value] replace body of Fixture::More#initialize with nil  (Fixture::More#initialize)  lines 24-26
+41a6d43adf0a  lib/more.rb:24:7: [statement] delete statement `super`  (Fixture::More#initialize)  lines 24-24
+9b639873e6ef  lib/more.rb:26:7: [statement] delete statement `@kept = 0`  (Fixture::More#initialize)  lines 26-26
+95dc2757a5c8  lib/more.rb:30:7: [value] replace body of Fixture::More#kept with nil  (Fixture::More#kept)  lines 30-30
+1d54bf31e8be  lib/more.rb:34:7: [value] replace body of Fixture::More#stores with nil  (Fixture::More#stores)  lines 34-40
+a3c87b3e422e  lib/more.rb:35:7: [statement] delete statement `kept = 2`  (Fixture::More#stores)  lines 35-35
+3428a367b98d  lib/more.rb:36:7: [statement] delete statement `@kept = 3`  (Fixture::More#stores)  lines 36-36
+5662a196b7c7  lib/more.rb:37:7: [statement] delete statement `@unused = 2`  (Fixture::More#stores)  lines 37-37
+75f20b188b96  lib/more.rb:39:7: [statement] delete statement `h[:v] = kept`  (Fixture::More#stores)  lines 39-39
+f9e7db663969  lib/more.rb:44:7: [value] replace body of Fixture::More#counts with nil  (Fixture::More#counts)  lines 44-44
+197777a71739  lib/more.rb:44:7: [value] replace body of Fixture::More#counts with []  (Fixture::More#counts)  lines 44-44
+7000f8081530  lib/more.rb:44:8: [element] drop `items.size > 0`  (Fixture::More#counts)  lines 44-44
+da58d17f1c9d  lib/more.rb:44:24: [element] drop `items.length > 0`  (Fixture::More#counts)  lines 44-44
+a0aae556cef3  lib/more.rb:44:42: [element] drop `items.count > 0`  (Fixture::More#counts)  lines 44-44
+bddbe79d72d5  lib/more.rb:44:59: [element] drop `items.length == 0`  (Fixture::More#counts)  lines 44-44
+3c0ba16e8588  lib/more.rb:44:78: [element] drop `items.count != 1`  (Fixture::More#counts)  lines 44-44
+baed800e7302  lib/more.rb:44:19: [relational] replace `>` with `>=`  (Fixture::More#counts)  lines 44-44
+2d3686fecbdd  lib/more.rb:44:8: [relational] replace `items.size > 0` with false  (Fixture::More#counts)  lines 44-44
+37c927454e37  lib/more.rb:44:37: [relational] replace `>` with `>=`  (Fixture::More#counts)  lines 44-44
+25788db13838  lib/more.rb:44:24: [relational] replace `items.length > 0` with false  (Fixture::More#counts)  lines 44-44
+07d7d3bfffa0  lib/more.rb:44:54: [relational] replace `>` with `>=`  (Fixture::More#counts)  lines 44-44
+e9367c8b4c64  lib/more.rb:44:42: [relational] replace `items.count > 0` with false  (Fixture::More#counts)  lines 44-44
+19232be5523a  lib/more.rb:44:72: [relational] replace `==` with `!=`  (Fixture::More#counts)  lines 44-44
+295fd793ea04  lib/more.rb:44:90: [relational] replace `!=` with `==`  (Fixture::More#counts)  lines 44-44
+445e2b20961c  lib/more.rb:48:7: [value] replace body of Fixture::More#ends with nil  (Fixture::More#ends)  lines 48-48
+8f6d5dd34a13  lib/more.rb:48:7: [value] replace body of Fixture::More#ends with []  (Fixture::More#ends)  lines 48-48
+bec041e1f4f4  lib/more.rb:48:8: [element] drop `items.first`  (Fixture::More#ends)  lines 48-48
+d18bf012783d  lib/more.rb:48:21: [element] drop `items.first(2)`  (Fixture::More#ends)  lines 48-48
+37bf3d7795b4  lib/more.rb:48:37: [element] drop `items.last { true }`  (Fixture::More#ends)  lines 48-48
+68fe788f07d3  lib/more.rb:48:58: [element] drop `max`  (Fixture::More#ends)  lines 48-48
+f6995cda578a  lib/more.rb:48:63: [element] drop `first(2)`  (Fixture::More#ends)  lines 48-48
+479196c3b0ef  lib/more.rb:48:14: [swap-method] replace `.first` with `.last`  (Fixture::More#ends)  lines 48-48
+68936d8d5cb5  lib/more.rb:52:7: [value] replace body of Fixture::More#mixed with nil  (Fixture::More#mixed)  lines 52-56
+824e050919b5  lib/more.rb:52:7: [statement] delete statement `if x puts(x) x += 1 end`  (Fixture::More#mixed)  lines 52-55
+d600bc5fda86  lib/more.rb:52:10: [condition] replace condition `x` with true  (Fixture::More#mixed)  lines 52-55
+a1f44b5ca048  lib/more.rb:54:9: [statement] delete statement `x += 1`  (Fixture::More#mixed)  lines 54-54
+fcb2050a451b  lib/more.rb:54:11: [arithmetic] replace `+=` with `-=`  (Fixture::More#mixed)  lines 54-54
+2471cd42f528  lib/more.rb:60:7: [value] replace body of Fixture::More#two_step with nil  (Fixture::More#two_step)  lines 60-64
+26682551340b  lib/more.rb:60:7: [statement] delete statement `if x x += 1 x -= 2 end`  (Fixture::More#two_step)  lines 60-63
+d167adeb5911  lib/more.rb:60:10: [condition] replace condition `x` with true  (Fixture::More#two_step)  lines 60-63
+8b3ff733f283  lib/more.rb:61:9: [statement] delete statement `x += 1`  (Fixture::More#two_step)  lines 61-61
+ae80947ea900  lib/more.rb:62:9: [statement] delete statement `x -= 2`  (Fixture::More#two_step)  lines 62-62
+7b3276aab7c2  lib/more.rb:61:11: [arithmetic] replace `+=` with `-=`  (Fixture::More#two_step)  lines 61-61
+930ea7e5b466  lib/more.rb:62:11: [arithmetic] replace `-=` with `+=`  (Fixture::More#two_step)  lines 62-62
+873810078369  lib/more.rb:68:7: [value] replace body of Fixture::More#bump with nil  (Fixture::More#bump)  lines 68-69
+0166fad5be97  lib/more.rb:73:7: [value] replace body of Fixture::More#root with nil  (Fixture::More#root)  lines 73-73
+f31c013ed4b1  lib/more.rb:73:19: [arithmetic] replace `+` with `-`  (Fixture::More#root)  lines 73-73
+b29c7a37622d  lib/more.rb:77:7: [value] replace body of Fixture::More#long_steps with nil  (Fixture::More#long_steps)  lines 77-78
+f17a139c8b8e  lib/more.rb:77:7: [statement] delete statement `first = value.to_s.center(20).upcase.reverse.downcase.str...`  (Fixture::More#long_steps)  lines 77-77
+7c3b00b73b1b  lib/more.rb:82:7: [value] replace body of Fixture::More#after_block with nil  (Fixture::More#after_block)  lines 82-83
+1229ff8b0deb  lib/more.rb:83:17: [arithmetic] replace `+` with `-`  (Fixture::More#after_block)  lines 83-83
+5a36c8beec96  lib/more.rb:87:7: [value] replace body of Fixture::More#extra with nil  (Fixture::More#extra)  lines 87-88
+e611b0569194  lib/more.rb:87:7: [value] replace body of Fixture::More#extra with 0  (Fixture::More#extra)  lines 87-88
+4263b17486fc  lib/more.rb:87:7: [statement] delete statement `super`  (Fixture::More#extra)  lines 87-87
+f0db60e13f08  lib/more.rb:92:7: [value] replace body of Fixture::More#hint with nil  (Fixture::More#hint)  lines 92-92
+10d37aa1a1f0  lib/more.rb:96:7: [value] replace body of Fixture::More#subclass_hint with nil  (Fixture::More#subclass_hint)  lines 96-96
+c42fff7b5223  lib/more.rb:100:7: [value] replace body of Fixture::More#extremes with nil  (Fixture::More#extremes)  lines 100-100
+ac985e3a6d48  lib/more.rb:100:7: [value] replace body of Fixture::More#extremes with []  (Fixture::More#extremes)  lines 100-100
+ef77f2f89ed6  lib/more.rb:100:13: [swap-method] replace `.max` with `.min`  (Fixture::More#extremes)  lines 100-100
+049adcdf3093  lib/more.rb:100:23: [swap-method] replace `.min` with `.max`  (Fixture::More#extremes)  lines 100-100
+6984932a7a89  lib/more.rb:100:30: [swap-method] replace `.round` with `.floor`  (Fixture::More#extremes)  lines 100-100
+827659e45f7b  lib/more.rb:100:30: [swap-method] replace `.round` with `.ceil`  (Fixture::More#extremes)  lines 100-100
+14eb7cf60fe4  lib/more.rb:100:39: [swap-method] replace `.floor` with `.round`  (Fixture::More#extremes)  lines 100-100
+494ed72f6833  lib/more.rb:100:39: [swap-method] replace `.floor` with `.ceil`  (Fixture::More#extremes)  lines 100-100
+1021af607469  lib/more.rb:100:48: [swap-method] replace `.ceil` with `.round`  (Fixture::More#extremes)  lines 100-100
+7aba7553bc4a  lib/more.rb:100:48: [swap-method] replace `.ceil` with `.floor`  (Fixture::More#extremes)  lines 100-100
+4d71731c34ed  lib/more.rb:100:56: [swap-method] replace `.truncate` with `.round`  (Fixture::More#extremes)  lines 100-100
+6d262750b71b  lib/more.rb:100:71: [swap-method] replace `.any?` with `.all?`  (Fixture::More#extremes)  lines 100-100
+24ff0f178287  lib/more.rb:100:71: [swap-method] replace `.any?` with `.none?`  (Fixture::More#extremes)  lines 100-100
+0e854dc6f96b  lib/more.rb:100:82: [swap-method] replace `.all?` with `.any?`  (Fixture::More#extremes)  lines 100-100
+322e4f49141a  lib/more.rb:100:93: [swap-method] replace `.none?` with `.any?`  (Fixture::More#extremes)  lines 100-100
+5c73368190e3  lib/more.rb:100:105: [swap-method] replace `.empty?` with `.any?`  (Fixture::More#extremes)  lines 100-100
+ee0acf768b2b  lib/more.rb:100:113: [condition] drop `!` from `!list`  (Fixture::More#extremes)  lines 100-100
+0d174e4be9c5  lib/more.rb:104:7: [value] replace body of Fixture::More#compare with nil  (Fixture::More#compare)  lines 104-104
+304863623e0f  lib/more.rb:104:14: [condition] replace `||` with `&&`  (Fixture::More#compare)  lines 104-104
+a95ff6ae23f4  lib/more.rb:104:20: [relational] replace `==` with `!=`  (Fixture::More#compare)  lines 104-104
+5075ccb73cb1  lib/more.rb:108:7: [value] replace body of Fixture::More#loops with nil  (Fixture::More#loops)  lines 108-110
+51cefcbc14e7  lib/more.rb:108:7: [statement] delete statement `x += 1 while x < 3`  (Fixture::More#loops)  lines 108-108
+e216b21d4652  lib/more.rb:109:7: [statement] delete statement `x -= 1 until x.zero?`  (Fixture::More#loops)  lines 109-109
+cbc8c738fcd5  lib/more.rb:108:20: [condition] replace condition `x < 3` with false  (Fixture::More#loops)  lines 108-108
+62c45649f3dd  lib/more.rb:108:22: [relational] replace `<` with `<=`  (Fixture::More#loops)  lines 108-108
+f7890191926d  lib/more.rb:108:22: [relational] replace `<` with `!=`  (Fixture::More#loops)  lines 108-108
+785fb265ab9a  lib/more.rb:108:7: [statement] delete statement `x += 1`  (Fixture::More#loops)  lines 108-108
+26831968db21  lib/more.rb:108:9: [arithmetic] replace `+=` with `-=`  (Fixture::More#loops)  lines 108-108
+33ad23590e8e  lib/more.rb:109:20: [condition] replace condition `x.zero?` with true  (Fixture::More#loops)  lines 109-109
+1359b656d401  lib/more.rb:109:7: [statement] delete statement `x -= 1`  (Fixture::More#loops)  lines 109-109
+72b9571df756  lib/more.rb:109:9: [arithmetic] replace `-=` with `+=`  (Fixture::More#loops)  lines 109-109
+0efd56d87f79  lib/more.rb:114:7: [value] replace body of Fixture::More#words with nil  (Fixture::More#words)  lines 114-114
+df84e30b533d  lib/more.rb:114:17: [condition] replace `or` with `and`  (Fixture::More#words)  lines 114-114
+0931bd90774b  lib/more.rb:114:10: [condition] replace `and` with `or`  (Fixture::More#words)  lines 114-114
+2f45ae8e4f78  lib/more.rb:114:29: [condition] replace `||` with `&&`  (Fixture::More#words)  lines 114-114
+c6af2035c08d  lib/more.rb:114:23: [condition] replace `&&` with `||`  (Fixture::More#words)  lines 114-114
+a138d4a3165e  lib/more.rb:114:35: [condition] replace `or` with `and`  (Fixture::More#words)  lines 114-114
+a2279eb3c00d  lib/more.rb:118:7: [value] replace body of Fixture::More#always with nil  (Fixture::More#always)  lines 118-118
+04170395752d  lib/more.rb:122:7: [value] replace body of Fixture::More#guard with nil  (Fixture::More#guard)  lines 122-123
+99c576252136  lib/more.rb:122:7: [statement] delete statement `raise ArgumentError unless x`  (Fixture::More#guard)  lines 122-122
+fa782f10811b  lib/more.rb:122:34: [condition] replace condition `x` with false  (Fixture::More#guard)  lines 122-122
+ecd452f32fa0  lib/more.rb:123:7: [condition] replace condition `x >= 0` with true  (Fixture::More#guard)  lines 123-123
+de8bf354611b  lib/more.rb:123:7: [condition] replace condition `x >= 0` with false  (Fixture::More#guard)  lines 123-123
+e3bff6b831ec  lib/more.rb:123:9: [relational] replace `>=` with `>`  (Fixture::More#guard)  lines 123-123
+2ce045c7338b  lib/more.rb:123:9: [relational] replace `>=` with `==`  (Fixture::More#guard)  lines 123-123
+0432804655f2  lib/more.rb:127:7: [value] replace body of Fixture::More#pick with nil  (Fixture::More#pick)  lines 127-131
+24f047d922cb  lib/more.rb:127:10: [condition] replace condition `x > 0` with true  (Fixture::More#pick)  lines 127-131
+562f484d8b9c  lib/more.rb:127:10: [condition] replace condition `x > 0` with false  (Fixture::More#pick)  lines 127-131
+65b8b4468885  lib/more.rb:127:12: [relational] replace `>` with `>=`  (Fixture::More#pick)  lines 127-131
+6885ccf03c42  lib/more.rb:127:12: [relational] replace `>` with `!=`  (Fixture::More#pick)  lines 127-131
+d6b661921ae5  lib/more.rb:128:9: [statement] delete statement `x.abs`  (Fixture::More#pick)  lines 128-128
+cedeb92f4cad  lib/more.rb:130:9: [statement] delete statement `x.to_s`  (Fixture::More#pick)  lines 130-130
+8e05a30a8f38  lib/more.rb:135:7: [value] replace body of Fixture::More#noop with nil  (Fixture::More#noop)  lines 135-137
+f8444c55d032  lib/more.rb:141:7: [value] replace body of Fixture::More#one with nil  (Fixture::More#one)  lines 141-141
+8839cbea3b16  lib/more.rb:141:7: [value] replace body of Fixture::More#one with []  (Fixture::More#one)  lines 141-141
+002804b654c2  lib/more.rb:145:7: [value] replace body of Fixture::More#ten with nil  (Fixture::More#ten)  lines 145-145
+44c05e1b5a42  lib/more.rb:145:7: [value] replace body of Fixture::More#ten with []  (Fixture::More#ten)  lines 145-145
+aa0b16069bba  lib/more.rb:145:8: [element] drop `1`  (Fixture::More#ten)  lines 145-145
+f9339e8a680a  lib/more.rb:145:11: [element] drop `2`  (Fixture::More#ten)  lines 145-145
+b98fc78c43a1  lib/more.rb:145:14: [element] drop `3`  (Fixture::More#ten)  lines 145-145
+66455ce28204  lib/more.rb:145:17: [element] drop `4`  (Fixture::More#ten)  lines 145-145
+a71b183b57ff  lib/more.rb:145:20: [element] drop `5`  (Fixture::More#ten)  lines 145-145
+ddabf4123636  lib/more.rb:145:23: [element] drop `6`  (Fixture::More#ten)  lines 145-145
+1dfbd7057a3a  lib/more.rb:145:26: [element] drop `7`  (Fixture::More#ten)  lines 145-145
+7991cd30d65c  lib/more.rb:145:29: [element] drop `8`  (Fixture::More#ten)  lines 145-145
+21276d9ea577  lib/more.rb:145:32: [element] drop `9`  (Fixture::More#ten)  lines 145-145
+34da54ca8f81  lib/more.rb:145:35: [element] drop `10`  (Fixture::More#ten)  lines 145-145
+e62a3cbc44f3  lib/more.rb:149:7: [value] replace body of Fixture::More#eleven with nil  (Fixture::More#eleven)  lines 149-149
+c04aae49e15c  lib/more.rb:149:7: [value] replace body of Fixture::More#eleven with []  (Fixture::More#eleven)  lines 149-149
+2f488923ee6e  lib/more.rb:153:7: [value] replace body of Fixture::More#sparse with nil  (Fixture::More#sparse)  lines 153-153
+4b0d8a345fe7  lib/more.rb:153:7: [value] replace body of Fixture::More#sparse with {}  (Fixture::More#sparse)  lines 153-153
+c5bdaf5e17ec  lib/more.rb:153:9: [element] drop `a: 1`  (Fixture::More#sparse)  lines 153-153
+eef271628e31  lib/more.rb:153:33: [element] drop `d: [1, nil]`  (Fixture::More#sparse)  lines 153-153
+f2035d23c9e7  lib/more.rb:153:37: [element] drop `1`  (Fixture::More#sparse)  lines 153-153
+8f262d27adb2  lib/more.rb:157:7: [value] replace body of Fixture::More#call_with_keywords with nil  (Fixture::More#call_with_keywords)  lines 157-157
+43e9c6dcc44e  lib/more.rb:157:29: [element] drop `a: 1`  (Fixture::More#call_with_keywords)  lines 157-157
+51add849cbae  lib/more.rb:157:35: [element] drop `b: 2`  (Fixture::More#call_with_keywords)  lines 157-157
+e51b3d9755b5  lib/more.rb:161:7: [value] replace body of Fixture::More#interpolated with nil  (Fixture::More#interpolated)  lines 161-161
+6cf41b2761a2  lib/more.rb:161:7: [value] replace body of Fixture::More#interpolated with ""  (Fixture::More#interpolated)  lines 161-161
+57c717b4f820  lib/more.rb:161:12: [arithmetic] replace `+` with `-`  (Fixture::More#interpolated)  lines 161-161
+18d86dc28251  lib/more.rb:161:31: [arithmetic] replace `*` with `/`  (Fixture::More#interpolated)  lines 161-161
+d3812b8786a9  lib/more.rb:161:26: [arithmetic] replace `-` with `+`  (Fixture::More#interpolated)  lines 161-161
+e81017e8ac22  lib/more.rb:161:24: [arithmetic] swap operands of `-`  (Fixture::More#interpolated)  lines 161-161
+c87bc041dd56  lib/more.rb:169:7: [value] replace body of Fixture::More#positive? with true  (Fixture::More#positive?)  lines 169-169
+294b1d417623  lib/more.rb:169:7: [value] replace body of Fixture::More#positive? with false  (Fixture::More#positive?)  lines 169-169
+d02b61fa72c9  lib/more.rb:169:9: [relational] replace `>` with `>=`  (Fixture::More#positive?)  lines 169-169
+f26d2aa34094  lib/more.rb:169:9: [relational] replace `>` with `!=`  (Fixture::More#positive?)  lines 169-169
+dd873ad9fc28  lib/more.rb:173:7: [value] replace body of Fixture::More#flag with nil  (Fixture::More#flag)  lines 173-173
+6832fefa1fef  lib/more.rb:173:7: [value] replace body of Fixture::More#flag with true  (Fixture::More#flag)  lines 173-173
+c43f3d10f544  lib/more.rb:177:7: [value] replace body of Fixture::More#opts with nil  (Fixture::More#opts)  lines 177-177
+d25b930b8280  lib/more.rb:177:7: [value] replace body of Fixture::More#opts with {}  (Fixture::More#opts)  lines 177-177
+0d405997c750  lib/more.rb:181:7: [value] replace body of Fixture::More#long_statement with nil  (Fixture::More#long_statement)  lines 181-181
+c4cd3f5e250b  lib/more.rb:185:7: [value] replace body of Fixture::More#safe_div with nil  (Fixture::More#safe_div)  lines 185-186
+619a495a9b85  lib/more.rb:185:7: [statement] delete statement `quotient = a / b`  (Fixture::More#safe_div)  lines 185-185
+2ad330bb6450  lib/more.rb:185:20: [arithmetic] replace `/` with `*`  (Fixture::More#safe_div)  lines 185-185
+84a6860e10f8  lib/more.rb:185:18: [arithmetic] swap operands of `/`  (Fixture::More#safe_div)  lines 185-185
+97cecba9de9c  lib/more.rb:192:7: [value] replace body of Fixture::More.inspect with nil  (Fixture::More.inspect)  lines 192-192
+d9610d03bd42  lib/more.rb:192:7: [value] replace body of Fixture::More.inspect with ""  (Fixture::More.inspect)  lines 192-192
+9edfe1682af9  lib/more.rb:200:7: [value] replace body of Fixture::More.named with nil  (Fixture::More.named)  lines 200-200
+09e9bfeb7f6f  lib/more.rb:205:9: [value] replace body of Fixture::More.shared with nil  (Fixture::More.shared)  lines 205-205
+7287db9f9013  lib/more.rb:210:7: [value] replace body of Fixture::More#chatter with nil  (Fixture::More#chatter)  lines 210-220
+972a01f91c0a  lib/more.rb:228:7: [value] replace body of Fixture::More#described_elsewhere with nil  (Fixture::More#described_elsewhere)  lines 228-229
+32e7a5f87820  lib/more.rb:229:14: [arithmetic] replace `*` with `/`  (Fixture::More#described_elsewhere)  lines 229-229
+5c89133b4fae  lib/more.rb:233:7: [value] replace body of Fixture::More#described_elsewhere_too with nil  (Fixture::More#described_elsewhere_too)  lines 233-233
+238082a85a7f  lib/more.rb:241:7: [value] replace body of Fixture::More#tidy with nil  (Fixture::More#tidy)  lines 241-242
+f8e8739570ef  lib/more.rb:241:7: [statement] delete statement `table[:name].strip!`  (Fixture::More#tidy)  lines 241-241
+222eec8fba07  lib/more.rb:258:7: [value] replace body of Fixture::More#quiet_unless with nil  (Fixture::More#quiet_unless)  lines 258-259
+07467ba66423  lib/more.rb:258:7: [statement] delete statement `return 0 unless x`  (Fixture::More#quiet_unless)  lines 258-258
+9a5b063ce561  lib/more.rb:258:23: [condition] replace condition `x` with false  (Fixture::More#quiet_unless)  lines 258-258
+291e2ba86e9f  lib/more.rb:263:7: [value] replace body of Fixture::More#remember with nil  (Fixture::More#remember)  lines 263-264
+b14f7b3b6811  lib/more.rb:263:7: [statement] delete statement `store(x)`  (Fixture::More#remember)  lines 263-263
+f17346509612  lib/more.rb:268:7: [value] replace body of Fixture::More#store with nil  (Fixture::More#store)  lines 268-268
+f45b3ff3d69f  lib/more.rb:272:7: [value] replace body of Fixture::More#touch with nil  (Fixture::More#touch)  lines 272-273
+5845cf7d6b20  lib/more.rb:272:7: [statement] delete statement `File.open(path, "w") { |file| puts file }`  (Fixture::More#touch)  lines 272-272
+450ce4ba4a8d  lib/more.rb:277:7: [value] replace body of Fixture::More#choose with nil  (Fixture::More#choose)  lines 277-278
+b166a63b7c35  lib/more.rb:277:7: [statement] delete statement `if x > 1 then x += 1 else x -= 1 end`  (Fixture::More#choose)  lines 277-277
+981e6466acc9  lib/more.rb:277:10: [condition] replace condition `x > 1` with true  (Fixture::More#choose)  lines 277-277
+8bbb31666305  lib/more.rb:277:10: [condition] replace condition `x > 1` with false  (Fixture::More#choose)  lines 277-277
+09bf2fd49f42  lib/more.rb:277:12: [relational] replace `>` with `>=`  (Fixture::More#choose)  lines 277-277
+f6a3c401dc4d  lib/more.rb:277:12: [relational] replace `>` with `!=`  (Fixture::More#choose)  lines 277-277
+d21015b33b0d  lib/more.rb:277:21: [statement] delete statement `x += 1`  (Fixture::More#choose)  lines 277-277
+10951c79c52c  lib/more.rb:277:23: [arithmetic] replace `+=` with `-=`  (Fixture::More#choose)  lines 277-277
+043b51e557df  lib/more.rb:277:33: [statement] delete statement `x -= 1`  (Fixture::More#choose)  lines 277-277
+03157241bd2b  lib/more.rb:277:35: [arithmetic] replace `-=` with `+=`  (Fixture::More#choose)  lines 277-277
+4cec96d817ed  lib/more.rb:282:7: [value] replace body of Fixture::More#modulo with nil  (Fixture::More#modulo)  lines 282-283
+6a63a4692f6e  lib/more.rb:282:7: [statement] delete statement `x %= 3`  (Fixture::More#modulo)  lines 282-282
+0d48a3b2f605  lib/more.rb:286:21: [value] replace body of Fixture::More#triple with nil  (Fixture::More#triple)  lines 286-286
+da16497e873b  lib/more.rb:286:23: [arithmetic] replace `*` with `/`  (Fixture::More#triple)  lines 286-286
+80725a003aa3  lib/more.rb:289:7: [value] replace body of Fixture::More#larger with nil  (Fixture::More#larger)  lines 289-289
+f13d53a4472b  lib/more.rb:289:19: [relational] replace `>` with `>=`  (Fixture::More#larger)  lines 289-289
+a6e49b7e1859  lib/more.rb:289:19: [relational] replace `>` with `!=`  (Fixture::More#larger)  lines 289-289
+9e6467eed674  lib/more.rb:289:7: [relational] replace `items.first > n` with false  (Fixture::More#larger)  lines 289-289
+89149943aaf6  lib/more.rb:289:13: [swap-method] replace `.first` with `.last`  (Fixture::More#larger)  lines 289-289
+24070f80dd37  lib/more.rb:293:7: [value] replace body of Fixture::More#after_map with nil  (Fixture::More#after_map)  lines 293-294
+4931dd2c0d99  lib/more.rb:293:7: [statement] delete statement `doubled = list.map { |x| x * 2 }`  (Fixture::More#after_map)  lines 293-293
+c4b4cdc5d28a  lib/more.rb:293:32: [statement] delete statement `x * 2`  (Fixture::More#after_map)  lines 293-293 via 293-293
+f9a12ec09bcc  lib/more.rb:293:34: [arithmetic] replace `*` with `/`  (Fixture::More#after_map)  lines 293-293 via 293-293
+864a9a7946e2  lib/more.rb:294:20: [arithmetic] replace `+` with `-`  (Fixture::More#after_map)  lines 294-294
+8471e9d04ee9  lib/more.rb:298:7: [value] replace body of Fixture::More#listed with nil  (Fixture::More#listed)  lines 298-303 blocks 301,302
+4372b3091ec0  lib/more.rb:298:7: [value] replace body of Fixture::More#listed with []  (Fixture::More#listed)  lines 298-303 blocks 301,302
+c864e27903f7  lib/more.rb:299:9: [element] drop `"items:"`  (Fixture::More#listed)  lines 298-303 blocks 301,302
+f22969cc8e5b  lib/more.rb:300:9: [element] drop `*items.map do |item| item.to_s * 2 end`  (Fixture::More#listed)  lines 298-303 blocks 301,302
+20d785ee2f65  lib/more.rb:301:11: [statement] delete statement `item.to_s * 2`  (Fixture::More#listed)  lines 301-301 via 298-303 blocks 301,302
+3f1d83f5c085  lib/more.rb:301:21: [arithmetic] replace `*` with `/`  (Fixture::More#listed)  lines 301-301 via 298-303 blocks 301,302
+234836205546  lib/more.rb:315:7: [value] replace body of Fixture::Less#initialize with nil  (Fixture::Less#initialize)  lines 315-316
+cf14eb96b534  lib/more.rb:315:7: [statement] delete statement `super()`  (Fixture::Less#initialize)  lines 315-315
+ca1f46ac0437  lib/more.rb:316:7: [statement] delete statement `@x = x`  (Fixture::Less#initialize)  lines 316-316
+15d769f57af6  lib/more.rb:322:7: [value] replace body of Fixture::Least#initialize with nil  (Fixture::Least#initialize)  lines 322-323
+87338b64e431  lib/more.rb:322:7: [statement] delete statement `super(x)`  (Fixture::Least#initialize)  lines 322-322
+00a40bb41ca7  lib/more.rb:323:7: [statement] delete statement `@x = x`  (Fixture::Least#initialize)  lines 323-323
+45d826b1109d  lib/more.rb:327:7: [value] replace body of Thing.made with nil  (Thing.made)  lines 327-327
+e466d027346e  lib/more.rb:336:7: [value] replace body of Fixture::Nested::Deeper.depth with nil  (Fixture::Nested::Deeper.depth)  lines 336-336
+8aa9d5b9210d  lib/more.rb:336:7: [value] replace body of Fixture::Nested::Deeper.depth with 0  (Fixture::Nested::Deeper.depth)  lines 336-336
+260 mutants over 3 files, 71 methods
+skipped Fixture::Calc#abstract: template stub  lib/calc.rb:31
+skipped Fixture::Calc#logger: logging helper  lib/calc.rb:51
+skipped Fixture::Edge#log_result: logging only  lib/edge.rb:31
+skipped Fixture::Edge#warn_if_slow: logging only  lib/edge.rb:35
+skipped Fixture::Edge#fleeting: defined inside a block  lib/edge.rb:42
+skipped Fixture::Edge#logger: logging helper  lib/edge.rb:49
+skipped Fixture::More#to_s: arid method name  lib/more.rb:195
+skipped Fixture::More#described_for_log: only used in logging  lib/more.rb:223
+skipped Fixture::More#settings: only used in logging  lib/more.rb:236
+skipped Fixture::More#log: logging helper  lib/more.rb:245
+skipped Fixture::More#logger: logging helper  lib/more.rb:249
+skipped Fixture::More#log_error: logging helper  lib/more.rb:253
+skipped Fixture#registered: defined inside a block  lib/more.rb:308
+skipped Fixture#foreign: explicit receiver  lib/more.rb:341
