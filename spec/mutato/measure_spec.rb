@@ -22,6 +22,23 @@ RSpec.describe Mutato::Measure do
 
   it("knows when some test passed") { expect(measure).not_to be_all_failed }
   it("knows when every test failed") { expect(measure.with(failed: %w[t1 t2])).to be_all_failed }
+  it("knows when no test ran") { expect(measure.with(durations: {}, failed: [])).to be_all_failed }
+
+  it "knows when most tests that run a line fail" do
+    expect(measure.mostly_failed?(["lib/a.rb:4"])).to be(true)
+  end
+
+  it "knows when the tests that run a line pass" do
+    expect(measure.with(failed: []).mostly_failed?(["lib/a.rb:3"])).to be(false)
+  end
+
+  it "counts only the tests that run the lines" do
+    expect(measure.mostly_failed?(["lib/a.rb:3"])).to be(false)
+  end
+
+  it("finds nothing failing on a line no test runs") {
+    expect(measure.mostly_failed?(["lib/b.rb:1"])).to be(false)
+  }
 
   it "leaves the failed tests out of the line map" do
     expect(baseline.line_map).to eq("lib/a.rb:3" => %w[t1], "lib/a.rb:4" => [])

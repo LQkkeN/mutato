@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "abort"
+require_relative "adapter"
 require_relative "annotations"
 require_relative "baseline"
 require_relative "boot"

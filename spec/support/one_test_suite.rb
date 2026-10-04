@@ -47,7 +47,7 @@ class OneTestSuite
 
   def run(ids)
     passed = @passes.call
-    Mutato::RSpecAdapter::Result.new(
+    Mutato::Result.new(
       status: passed ? 0 : 1,
       outside: nil,
       failing: (TEST unless passed),
@@ -56,4 +56,8 @@ class OneTestSuite
   end
 
   def stop; end
+
+  def suite_done; end
+
+  def child_done; end
 end

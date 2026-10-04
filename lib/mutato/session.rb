@@ -12,7 +12,7 @@ module Mutato
       todo = chosen
       @console.say(*@selection.summary(todo))
       nothing if todo.empty?
-      try(todo, Boot.new(@selection, @console).suite)
+      try(todo, Boot.new(@selection, @console).suite(todo))
     end
 
     private
@@ -36,6 +36,8 @@ module Mutato
       campaign = Campaign.new(suite, @console)
       outcomes = campaign.try(todo) { |partial| conclude(partial, campaign, started) }
       finish(conclude(outcomes, campaign, started))
+    ensure
+      suite.adapter.suite_done
     end
 
     def conclude(outcomes, campaign, started)

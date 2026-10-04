@@ -38,6 +38,12 @@ RSpec.describe Mutato::Session do
     expect(printed.string).to include("results: caught 1")
   end
 
+  it "lets the framework finish" do
+    allow(adapter).to receive(:suite_done)
+    session.call
+    expect(adapter).to have_received(:suite_done)
+  end
+
   it "writes the outcomes" do
     allow(suite.output).to receive(:write)
     session.call

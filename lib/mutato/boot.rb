@@ -8,18 +8,28 @@ module Mutato
       @selection = selection
       @console = console
       @output = nil
+      @adapter = RSpecAdapter
     end
 
-    def suite
-      adapter = booted
-      # What booting executed, before any test ran.
-      executed = Coverage.peek_result
-      started = Clock.now
-      measured = describe(measure(adapter), started)
-      Suite.new(adapter:, baseline: baseline(measured, executed), options:, output:)
+    # A run that ends while booting still ends the framework's way.
+    def suite(todo)
+      built(todo)
+    rescue Abort
+      @adapter.suite_done
+      raise
     end
 
     private
+
+    # Most of the tests that run the chosen mutants' lines must pass.
+    def built(todo)
+      booted
+      # What booting executed, before any test ran.
+      executed = Coverage.peek_result
+      started = Clock.now
+      measured = describe(measure, started, todo.flat_map(&:line_keys))
+      Suite.new(adapter: @adapter, baseline: baseline(measured, executed), options:, output:)
+    end
 
     def options
       @selection.options
@@ -31,13 +41,13 @@ module Mutato
 
     def booted
       started = Clock.now
-      RSpecAdapter.boot(options.spec_args)
+      @adapter.boot(options.spec_args)
       Mutato.config.run_hooks(:after_boot)
       report_boot(started)
     end
 
     def report_boot(started)
-      count = RSpecAdapter.locations.size
+      count = @adapter.locations.size
       @console.say(
         format(
           "boot: %<seconds>.2fs, %<count>d examples loaded",
@@ -45,9 +55,8 @@ module Mutato
           count:
         )
       )
-      @console.die("spec files failed to load, see the error above") if RSpecAdapter.load_failed?
+      @console.die("spec files failed to load, see the error above") if @adapter.load_failed?
       @console.die(no_tests) if count.zero?
-      RSpecAdapter
     end
 
     def no_tests
@@ -56,10 +65,10 @@ module Mutato
       "no tests loaded from #{options.spec_args.join(" ")}"
     end
 
-    def measure(adapter)
+    def measure
       log = output.log_path("baseline")
       Mutato.config.run_hooks(:before_mutant)
-      check(Child.run(log:) { adapter.baseline(@selection.prefixes) }, log)
+      check(Child.run(log:) { @adapter.baseline(@selection.prefixes) }, log)
     end
 
     def check(measured, log)
@@ -68,21 +77,25 @@ module Mutato
       @console.die("baseline crashed: #{measured.inspect}, see #{log}")
     end
 
-    def describe(measured, started)
+    def describe(measured, started, lines)
       @console.say(measured.summary(Clock.since(started)))
-      failed = measured.failed
-      if failed.any?
-        @console.say("baseline: #{failed.size} failing tests excluded: #{failed.first(5)}")
-      end
-      @console.die("baseline: nothing passed") if measured.all_failed?
-      measured
+      excluded(measured.failed)
+      return measured unless measured.all_failed? || measured.mostly_failed?(lines)
+
+      @console.die("baseline: too few tests pass to judge, see #{output.log_path("baseline")}")
+    end
+
+    def excluded(failed)
+      return if failed.empty?
+
+      @console.say("baseline: #{failed.size} failing tests excluded: #{failed.first(5)}")
     end
 
     def baseline(measured, executed)
       # With autoloading, a file may load first in a test.
       loaded = executed.keys.to_set.merge(measured.seen)
       measured.baseline(
-        locations: RSpecAdapter.locations,
+        locations: @adapter.locations,
         boot_lines: boot_lines(executed),
         loaded_files: loaded
       )

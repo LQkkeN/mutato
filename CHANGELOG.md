@@ -8,6 +8,8 @@ Notable changes for users of mutato. The format follows
 
 ### Changed
 
+- A baseline in which most of the tests that run the chosen mutants fail stops
+  the run.
 - `__LINE__ + 1` and the like are not mutated, nor are memo guards that test
   `defined?(@x)` or `@x.nil?`.
 
