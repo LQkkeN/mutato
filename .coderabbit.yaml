@@ -9,13 +9,14 @@ tone_instructions: >-
 reviews:
   profile: chill
   request_changes_workflow: false
-  # The PR description is the author's own.
+  # The PR description is the author's own; the walkthrough keeps the changes and the effort.
   high_level_summary: false
-  high_level_summary_in_walkthrough: true
-  review_status: true
+  high_level_summary_in_walkthrough: false
+  changed_files_summary: true
+  estimate_code_review_effort: true
+  review_status: false
   collapse_walkthrough: true
   sequence_diagrams: false
-  estimate_code_review_effort: false
   assess_linked_issues: false
   related_issues: false
   related_prs: false
@@ -66,15 +67,23 @@ reviews:
     docstrings:
       mode: "off"
     title:
-      mode: warning
-      requirements: >-
-        At most 50 characters, capitalized, imperative mood, no final period.
+      mode: "off"
     description:
       mode: "off"
     issue_assessment:
       mode: "off"
   finishing_touches:
     docstrings:
+      enabled: false
+    unit_tests:
+      enabled: false
+    autofix:
+      enabled: false
+    fix_ci:
+      enabled: false
+    resolve_merge_conflict:
+      enabled: false
+    simplify:
       enabled: false
   tools:
     # Already run by CI, against the repository's own configuration.
