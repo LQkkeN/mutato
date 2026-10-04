@@ -7,6 +7,7 @@ module Mutato
     :help,
     :version,
     :spec,
+    :test,
     :config,
     :diff,
     :format,
@@ -21,8 +22,15 @@ module Mutato
       Flags.parse(argv)
     end
 
-    def spec_args
-      Shellwords.split(spec)
+    # The flag given, else the directory there is: spec for RSpec, test for Minitest.
+    def minitest?
+      return true if test
+
+      spec.nil? && !Dir.exist?("spec") && Dir.exist?("test")
+    end
+
+    def test_args
+      Shellwords.split(test || spec || (minitest? ? "test" : "spec"))
     end
 
     def genre?(genre)

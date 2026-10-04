@@ -6,6 +6,11 @@ Notable changes for users of mutato. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- Minitest 5 and 6: `--test PATHS`, or by default when there is a `test`
+  directory and no `spec` one.
+
 ### Changed
 
 - A baseline in which most of the tests that run the chosen mutants fail stops

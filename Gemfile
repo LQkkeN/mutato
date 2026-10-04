@@ -6,6 +6,7 @@ gemspec
 
 group :development do
   gem "flay", "~> 2.14", require: false
+  gem "minitest", "~> 6.0"
   gem "rake", "~> 13.0"
   gem "reek", "~> 6.5", require: false
   gem "rspec", "~> 3.12"

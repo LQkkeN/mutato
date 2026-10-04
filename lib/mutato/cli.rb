@@ -18,6 +18,7 @@ require_relative "flags"
 require_relative "group_hooks"
 require_relative "hits"
 require_relative "measure"
+require_relative "minitest_adapter"
 require_relative "mode"
 require_relative "options"
 require_relative "output"
@@ -41,6 +42,7 @@ module Mutato
       options:
         -h, --help  -v, --version  this text, the version
         --spec ARGS                rspec arguments: paths, --tag, ... (default spec)
+        --test PATHS               Minitest files, directories, globs (default test)
         --config FILE              hooks and skips (default .mutato.rb)
         --diff FILE|-              only mutate lines a unified diff adds or changes
         --format github|plain      survivors as annotations or path:line:col lines

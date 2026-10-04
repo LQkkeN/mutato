@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description = <<~DESCRIPTION
     Mutates methods with Prism, redefines them in forked children of a
     test process booted once, selects the tests that cover each mutant from
-    per-test coverage, and reports the survivors. RSpec.
+    per-test coverage, and reports the survivors. RSpec or Minitest.
   DESCRIPTION
   spec.homepage = "https://github.com/LQkkeN/mutato"
   spec.license = "MIT"

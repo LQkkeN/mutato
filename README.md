@@ -4,9 +4,9 @@
 
 [![CI](https://github.com/LQkkeN/mutato/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/LQkkeN/mutato/actions/workflows/ci.yml)
 
-Mutation testing for Ruby and RSpec. mutato changes your code one small step
-at a time and runs the tests that cover each change. A change that no test
-notices points at a missing test.
+Mutation testing for Ruby, with RSpec or Minitest. mutato changes your code
+one small step at a time and runs the tests that cover each change. A change
+that no test notices points at a missing test.
 
 ## Install
 
@@ -114,13 +114,27 @@ prints lines that editors and CI systems parse:
 lib/shop/price.rb:9:34: survived: drop `0`
 ```
 
-## Choose the specs
+## Choose the tests
 
 ```sh
-bundle exec mutato run lib --spec spec/unit                        # default: spec
+bundle exec mutato run lib --spec spec/unit                        # RSpec, default: spec
 bundle exec mutato run app lib --spec 'spec --tag ~slow'           # any rspec arguments
 bundle exec mutato run lib --spec "test --pattern '**/*_test.rb'"  # files not named _spec.rb
+bundle exec mutato run lib --test test/models                      # Minitest, default: test
+bundle exec mutato run lib --test 'test/models test/lib/*_test.rb' # files, directories, globs
 ```
+
+Without either flag, a `spec` directory means RSpec, else a `test` directory
+means Minitest. A Minitest directory yields its `*_test.rb`, `test_*.rb`,
+`*_spec.rb` and `spec_*.rb` files, leaving out `system`, `dummy` and
+`fixtures` below it unless they are named; a path that matches nothing stops
+the run. `lib`, `test` and each test path's top directory go on the load path.
+
+mutato runs each test on its own through its class's runner, so class-level
+hooks such as `before_all` apply, while reporters, plugins and parallel
+workers stay out of it. `Minitest.after_run` blocks run once, at the end, as
+Minitest runs them only in the process that loaded the tests; with
+`Minitest.allow_fork` set, also after every child's tests.
 
 ## Start small on a big codebase
 
@@ -152,6 +166,9 @@ Mutato.before_mutant { truncate_tables }
 
 # Rails loads lazily: load everything once, or untested files come out unloaded.
 Mutato.after_boot { Rails.application.eager_load! }
+
+# Minitest: after_run cleans up after each child too, for state the tests create.
+Mutato.after_boot { Minitest.allow_fork = true }
 
 # A socket must not be shared with the forked children.
 Mutato.before_fork { SomeClient.disconnect }
@@ -211,7 +228,7 @@ offsets such as `__LINE__ + 1`, and code outside methods.
 
 ## Limits
 
-RSpec only, and one worker: a run takes as long as the tests it runs. An
+One worker: a run takes as long as the tests it runs. An
 endless `def x = ...` comes out uncovered, and native extensions are
 invisible. A mutant can reach code the tests never did, such as the network.
 

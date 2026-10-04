@@ -8,7 +8,7 @@ module Mutato
       @selection = selection
       @console = console
       @output = nil
-      @adapter = RSpecAdapter
+      @adapter = selection.options.minitest? ? MinitestAdapter : RSpecAdapter
     end
 
     # A run that ends while booting still ends the framework's way.
@@ -41,7 +41,7 @@ module Mutato
 
     def booted
       started = Clock.now
-      @adapter.boot(options.spec_args)
+      @adapter.boot(options.test_args)
       Mutato.config.run_hooks(:after_boot)
       report_boot(started)
     end
@@ -50,19 +50,18 @@ module Mutato
       count = @adapter.locations.size
       @console.say(
         format(
-          "boot: %<seconds>.2fs, %<count>d examples loaded",
+          "boot: %<seconds>.2fs, %<count>d tests loaded",
           seconds: Clock.since(started),
           count:
         )
       )
-      @console.die("spec files failed to load, see the error above") if @adapter.load_failed?
+      @console.die("test files failed to load, see the error above") if @adapter.load_failed?
       @console.die(no_tests) if count.zero?
     end
 
     def no_tests
-      return "the suite is Minitest; mutato is RSpec-only" if defined?(Minitest::Test)
-
-      "no tests loaded from #{options.spec_args.join(" ")}"
+      hint = "; for Minitest, pass --test PATHS" unless options.minitest?
+      "no tests loaded from #{options.test_args.join(" ")}#{hint}"
     end
 
     def measure

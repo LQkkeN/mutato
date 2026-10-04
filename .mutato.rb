@@ -6,6 +6,7 @@ Mutato.skip(
   "test harness: runs around the examples themselves"
 )
 Mutato.skip("Mutato::Config#run_hooks", "test harness: runs around the examples themselves")
+Mutato.skip(/\AMutato::MinitestAdapter#(?:boot|prepare)\z/, "process-wide setup: the subprocess specs run it")
 Mutato.skip(/\AMutato::Installer\b/, "test harness: installs the mutants")
 Mutato.skip("Mutato::Diff#initialize", "initial values a header always replaces")
 Mutato.skip("Mutato::Generation#parses?", "safety net without a known case")

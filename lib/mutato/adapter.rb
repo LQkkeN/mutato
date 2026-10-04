@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Mutato
-  # What a test framework's adapter answers; RSpecAdapter is one.
+  # What a test framework's adapter answers; RSpecAdapter and MinitestAdapter are the two.
   module Adapter
     # Booting: load and name the tests, report a load error; a child measures them.
     BOOT = %i[boot locations load_failed? baseline].freeze
