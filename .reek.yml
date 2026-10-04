@@ -6,6 +6,9 @@ detectors:
     enabled: true
   NilCheck:
     enabled: false # Prism's optional children are nil, and rubocop asks for `&.` where reek forbids it
+  MissingSafeMethod:
+    exclude:
+      - StandInPool # the name of the method it stands in for
   FeatureEnvy:
     enabled: false # a visitor over Prism's tree works on nodes it cannot give methods to
 

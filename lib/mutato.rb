@@ -8,6 +8,7 @@ require_relative "mutato/generation"
 require_relative "mutato/generator"
 require_relative "mutato/genres"
 require_relative "mutato/installer"
+require_relative "mutato/integrations"
 require_relative "mutato/mutation"
 require_relative "mutato/nodes"
 require_relative "mutato/privates"
@@ -51,9 +52,5 @@ module Mutato
     config.arid(*names)
   end
 
-  # A forked child must not share the parent's database sockets.
-  before_fork { Sequel::DATABASES.each(&:disconnect) if defined?(Sequel) }
-  before_fork do
-    ActiveRecord::Base.connection_handler.clear_all_connections! if defined?(ActiveRecord)
-  end
+  Integrations.install
 end

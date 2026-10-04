@@ -13,4 +13,5 @@ group :development do
   gem "rubocop-performance", "~> 1.27", require: false
   gem "rubocop-rake", "~> 0.7", require: false
   gem "rubocop-rspec", "~> 3.10", require: false
+  gem "sqlite3", ">= 1.4", require: false
 end

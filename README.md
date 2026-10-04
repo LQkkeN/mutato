@@ -164,7 +164,8 @@ Mutato.skip 'Accounts#obtain', 'lock re-check for a race no test reproduces'
 Mutato.arid :say, 'UI'
 ```
 
-Sequel and ActiveRecord connections are closed before every fork already.
+Sequel and ActiveRecord connections are closed before every fork already; an
+in-memory SQLite database under Active Record is copied into each child instead.
 Other options: `--out DIR` (default `mutato.out`), `--timeout-min SECONDS`
 (default 10), `--version`, `--help`.
 

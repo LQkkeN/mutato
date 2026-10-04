@@ -13,6 +13,10 @@ Notable changes for users of mutato. The format follows
 - Source files are read as UTF-8 whatever the locale.
 - RSpec failure backtraces keep a project's own frames when its path contains
   `/mutato/`.
+- A gem that defines the `ActiveRecord` namespace without Active Record no
+  longer breaks the fork.
+- Active Record on in-memory SQLite: each child gets a copy of the database,
+  where it got an empty one.
 
 ## [0.1.0] - 2026-10-03
 
