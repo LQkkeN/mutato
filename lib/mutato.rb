@@ -19,6 +19,10 @@ require_relative "mutato/version"
 require_relative "mutato/visitor"
 
 module Mutato
+  # mutato's own frames, wherever it is installed: its library and its executable.
+  FRAMES = %r{\A#{Regexp.escape(__dir__)}/mutato[/.]|(?:\A|/)exe/mutato:}
+  public_constant :FRAMES
+
   def self.config
     @config ||= Config.new
   end

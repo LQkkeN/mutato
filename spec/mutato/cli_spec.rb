@@ -52,6 +52,13 @@ RSpec.describe Mutato::CLI, :subprocess do
     it("says so") { expect(run.stderr).to include("control OK") }
   end
 
+  context "without a locale, on UTF-8 source" do
+    let(:unset) { { "LANG" => nil, "LC_ALL" => nil, "LC_CTYPE" => nil } }
+    let(:run) { FixtureRuns.run("list", "lib", env: unset) }
+
+    it("reads it") { expect(run.status).to be_success, run.stderr }
+  end
+
   context "with --diff" do
     let(:run) { FixtureRuns.run("run", "lib", "--diff", "-", stdin: FixtureRuns.clamp_diff) }
     let(:outcomes) { run.outcomes }

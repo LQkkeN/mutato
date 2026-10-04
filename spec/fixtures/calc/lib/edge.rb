@@ -2,7 +2,7 @@ module Fixture
   class Edge
     def codes
       [
-        1, # one
+        1, # één
         2, # two
       ]
     end

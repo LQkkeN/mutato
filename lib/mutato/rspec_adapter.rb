@@ -26,7 +26,7 @@ module Mutato
     def setup(runner)
       @runner = runner
       runner.setup($stderr, $stdout)
-      RSpec.configuration.backtrace_exclusion_patterns << %r{/mutato/}
+      RSpec.configuration.backtrace_exclusion_patterns << FRAMES
     end
 
     def locations

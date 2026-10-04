@@ -30,7 +30,7 @@ module Mutato
 
       @installed = Installer.install(
         @mutation.subject,
-        @mutation.mutated_source(File.read(@mutation.file))
+        @mutation.mutated_source(File.read(@mutation.file, encoding: "UTF-8"))
       )
     end
 

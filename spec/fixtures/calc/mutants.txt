@@ -31,10 +31,10 @@ e0148c3a2adf  lib/calc.rb:56:7: [value] replace body of Fixture::Calc#secret wit
 dff35e62e144  lib/calc.rb:56:8: [element] drop `1`  (Fixture::Calc#secret)  lines 56-56
 ab67316f235d  lib/calc.rb:56:11: [element] drop `2`  (Fixture::Calc#secret)  lines 56-56
 8fb4d0922db7  lib/calc.rb:56:14: [element] drop `3`  (Fixture::Calc#secret)  lines 56-56
-1cbd405ace2b  lib/edge.rb:4:7: [value] replace body of Fixture::Edge#codes with nil  (Fixture::Edge#codes)  lines 4-7
-c256e0b1777d  lib/edge.rb:4:7: [value] replace body of Fixture::Edge#codes with []  (Fixture::Edge#codes)  lines 4-7
-ee4da7969f74  lib/edge.rb:5:9: [element] drop `1`  (Fixture::Edge#codes)  lines 4-7
-6ac86e5ba5e3  lib/edge.rb:6:9: [element] drop `2`  (Fixture::Edge#codes)  lines 4-7
+0cafd41abc20  lib/edge.rb:4:7: [value] replace body of Fixture::Edge#codes with nil  (Fixture::Edge#codes)  lines 4-7
+6a4251b4c892  lib/edge.rb:4:7: [value] replace body of Fixture::Edge#codes with []  (Fixture::Edge#codes)  lines 4-7
+1a80c4383ab2  lib/edge.rb:5:9: [element] drop `1`  (Fixture::Edge#codes)  lines 4-7
+8181fc4c7209  lib/edge.rb:6:9: [element] drop `2`  (Fixture::Edge#codes)  lines 4-7
 dcd4b5afbcf9  lib/edge.rb:11:7: [value] replace body of Fixture::Edge#guarded with nil  (Fixture::Edge#guarded)  lines 11-15
 aa994c10550a  lib/edge.rb:11:7: [value] replace body of Fixture::Edge#guarded with ""  (Fixture::Edge#guarded)  lines 11-15
 2307c546b2e1  lib/edge.rb:11:7: [statement] delete statement `raise ArgumentError, <<~MSG if x.nil?`  (Fixture::Edge#guarded)  lines 11-11
