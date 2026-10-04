@@ -21,6 +21,18 @@ module Fixture
       @cached = codes.size
     end
 
+    def checked
+      return @checked if defined?(@checked)
+
+      @checked = codes.first
+    end
+
+    def known
+      return @known unless @known.nil?
+
+      @known = codes.last
+    end
+
     def shout(x)
       message = <<~MSG
         #{x}!

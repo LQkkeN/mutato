@@ -6,6 +6,11 @@ Notable changes for users of mutato. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- `__LINE__ + 1` and the like are not mutated, nor are memo guards that test
+  `defined?(@x)` or `@x.nil?`.
+
 ### Fixed
 
 - Without `bundle exec`, below the Gemfile's directory, Bundler's switch to

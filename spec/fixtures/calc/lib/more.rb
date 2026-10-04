@@ -302,6 +302,14 @@ module Fixture
         end
       ]
     end
+
+    def next_line
+      __LINE__ + 1
+    end
+
+    def line_after
+      1 + __LINE__
+    end
   end
 
   REGISTRY = [].tap do

@@ -205,7 +205,8 @@ method fails and 3 when no test ran any.
 | element | `[net, 0]` -> `[net]` |
 
 It leaves alone what no test could tell apart or should check: logging and
-output, variables nothing reads, `return @x if @x`, and code outside methods.
+output, variables nothing reads, memo guards such as `return @x if @x`, line
+offsets such as `__LINE__ + 1`, and code outside methods.
 `mutato list` names each method it skips, with the reason.
 
 ## Limits

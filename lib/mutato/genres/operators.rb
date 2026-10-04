@@ -26,12 +26,13 @@ module Mutato
         RELATIONAL.fetch(name).reject { |operator| same && operator == "!=" }
       end
 
+      # `__LINE__ + 1` points generated code's lines at its source: not behaviour.
       def mutate(call)
+        return if [call.receiver, *Nodes.arguments_of(call)].any?(Prism::SourceLineNode)
+
         name = call.name.to_s
         relational(call, name) if RELATIONAL.key?(name)
-        arithmetic = ARITHMETIC[name]
-        operator(call, arithmetic, :arithmetic) if arithmetic
-        swap_operands(call) if NON_COMMUTATIVE.include?(name)
+        arithmetic(call, name)
       end
 
       def compound(node)
@@ -48,6 +49,12 @@ module Mutato
       end
 
       private
+
+      def arithmetic(call, name)
+        replacement = ARITHMETIC[name]
+        operator(call, replacement, :arithmetic) if replacement
+        swap_operands(call) if NON_COMMUTATIVE.include?(name)
+      end
 
       def relational(call, name)
         Operators.neighbours(call, name).each { |operator| operator(call, operator, :relational) }

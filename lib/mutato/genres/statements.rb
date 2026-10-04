@@ -46,7 +46,7 @@ module Mutato
       def self.keep?(statement)
         return true if Arid.arid_node?(statement) || Nodes.one_of?(statement, Nodes::LITERALS)
 
-        statement.is_a?(Prism::DefNode) || Nodes.memo_guard?(statement)
+        statement.is_a?(Prism::DefNode) || MemoGuard.match?(statement)
       end
 
       def mutate(node)

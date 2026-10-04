@@ -21,9 +21,8 @@ module Mutato
       Prism::TrueNode,
       Prism::FalseNode
     ].freeze
-    MEMO_GUARD = /\Areturn (@\w+) if \1\z/
     public_constant :BLOCKS, :CONDITIONALS, :LITERALS
-    private_constant :HEREDOC_CAPABLE, :MEMO_GUARD
+    private_constant :HEREDOC_CAPABLE
 
     module_function
 
@@ -88,11 +87,6 @@ module Mutato
     # `initialize` and setters: their caller never sees the value they return.
     def value_dropped?(name)
       name == :initialize || name.to_s.match?(/\A\w+=\z/)
-    end
-
-    # `return @x if @x`: deleting it, or making it never return, only skips a cache.
-    def memo_guard?(statement)
-      statement.slice.match?(MEMO_GUARD)
     end
 
     def nil_store?(call)

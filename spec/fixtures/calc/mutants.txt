@@ -41,8 +41,14 @@ aa994c10550a  lib/edge.rb:11:7: [value] replace body of Fixture::Edge#guarded wi
 46fbf59aaca2  lib/edge.rb:11:38: [condition] replace condition `x.nil?` with true  (Fixture::Edge#guarded)  lines 11-11
 2d5ce9337624  lib/edge.rb:19:7: [value] replace body of Fixture::Edge#cached with nil  (Fixture::Edge#cached)  lines 19-21
 ad213591adce  lib/edge.rb:19:25: [condition] replace condition `@cached` with true  (Fixture::Edge#cached)  lines 19-19
-626ead0e5f96  lib/edge.rb:25:7: [value] replace body of Fixture::Edge#shout with nil  (Fixture::Edge#shout)  lines 25-28
-b360ca073425  lib/edge.rb:25:7: [statement] delete statement `message = <<~MSG`  (Fixture::Edge#shout)  lines 25-25
+988faa0ef4c9  lib/edge.rb:25:7: [value] replace body of Fixture::Edge#checked with nil  (Fixture::Edge#checked)  lines 25-27
+e00b1f097529  lib/edge.rb:25:26: [condition] replace condition `defined?(@checked)` with true  (Fixture::Edge#checked)  lines 25-25
+e505969e0b0b  lib/edge.rb:27:24: [swap-method] replace `.first` with `.last`  (Fixture::Edge#checked)  lines 27-27
+4d183cfa65b7  lib/edge.rb:31:7: [value] replace body of Fixture::Edge#known with nil  (Fixture::Edge#known)  lines 31-33
+4f25560d4d7a  lib/edge.rb:31:28: [condition] replace condition `@known.nil?` with false  (Fixture::Edge#known)  lines 31-31
+93bf42efecfe  lib/edge.rb:33:22: [swap-method] replace `.last` with `.first`  (Fixture::Edge#known)  lines 33-33
+626ead0e5f96  lib/edge.rb:37:7: [value] replace body of Fixture::Edge#shout with nil  (Fixture::Edge#shout)  lines 37-40
+b360ca073425  lib/edge.rb:37:7: [statement] delete statement `message = <<~MSG`  (Fixture::Edge#shout)  lines 37-37
 c5f10b853ccf  lib/more.rb:6:7: [value] replace body of Fixture::Thing#z with nil  (Fixture::Thing#z)  lines 6-6
 8c326375eeed  lib/more.rb:6:7: [value] replace body of Fixture::Thing#z with 0  (Fixture::Thing#z)  lines 6-6
 85afb1e3ae58  lib/more.rb:12:7: [value] replace body of Fixture::Util.u with nil  (Fixture::Util.u)  lines 12-12
@@ -249,27 +255,29 @@ c864e27903f7  lib/more.rb:299:9: [element] drop `"items:"`  (Fixture::More#liste
 f22969cc8e5b  lib/more.rb:300:9: [element] drop `*items.map do |item| item.to_s * 2 end`  (Fixture::More#listed)  lines 298-303 blocks 301,302
 20d785ee2f65  lib/more.rb:301:11: [statement] delete statement `item.to_s * 2`  (Fixture::More#listed)  lines 301-301 via 298-303 blocks 301,302
 3f1d83f5c085  lib/more.rb:301:21: [arithmetic] replace `*` with `/`  (Fixture::More#listed)  lines 301-301 via 298-303 blocks 301,302
-234836205546  lib/more.rb:315:7: [value] replace body of Fixture::Less#initialize with nil  (Fixture::Less#initialize)  lines 315-316
-cf14eb96b534  lib/more.rb:315:7: [statement] delete statement `super()`  (Fixture::Less#initialize)  lines 315-315
-ca1f46ac0437  lib/more.rb:316:7: [statement] delete statement `@x = x`  (Fixture::Less#initialize)  lines 316-316
-15d769f57af6  lib/more.rb:322:7: [value] replace body of Fixture::Least#initialize with nil  (Fixture::Least#initialize)  lines 322-323
-87338b64e431  lib/more.rb:322:7: [statement] delete statement `super(x)`  (Fixture::Least#initialize)  lines 322-322
-00a40bb41ca7  lib/more.rb:323:7: [statement] delete statement `@x = x`  (Fixture::Least#initialize)  lines 323-323
-45d826b1109d  lib/more.rb:327:7: [value] replace body of Thing.made with nil  (Thing.made)  lines 327-327
-e466d027346e  lib/more.rb:336:7: [value] replace body of Fixture::Nested::Deeper.depth with nil  (Fixture::Nested::Deeper.depth)  lines 336-336
-8aa9d5b9210d  lib/more.rb:336:7: [value] replace body of Fixture::Nested::Deeper.depth with 0  (Fixture::Nested::Deeper.depth)  lines 336-336
-260 mutants over 3 files, 71 methods
+46a9a089a849  lib/more.rb:307:7: [value] replace body of Fixture::More#next_line with nil  (Fixture::More#next_line)  lines 307-307
+9064c66334a4  lib/more.rb:311:7: [value] replace body of Fixture::More#line_after with nil  (Fixture::More#line_after)  lines 311-311
+234836205546  lib/more.rb:323:7: [value] replace body of Fixture::Less#initialize with nil  (Fixture::Less#initialize)  lines 323-324
+cf14eb96b534  lib/more.rb:323:7: [statement] delete statement `super()`  (Fixture::Less#initialize)  lines 323-323
+ca1f46ac0437  lib/more.rb:324:7: [statement] delete statement `@x = x`  (Fixture::Less#initialize)  lines 324-324
+15d769f57af6  lib/more.rb:330:7: [value] replace body of Fixture::Least#initialize with nil  (Fixture::Least#initialize)  lines 330-331
+87338b64e431  lib/more.rb:330:7: [statement] delete statement `super(x)`  (Fixture::Least#initialize)  lines 330-330
+00a40bb41ca7  lib/more.rb:331:7: [statement] delete statement `@x = x`  (Fixture::Least#initialize)  lines 331-331
+45d826b1109d  lib/more.rb:335:7: [value] replace body of Thing.made with nil  (Thing.made)  lines 335-335
+e466d027346e  lib/more.rb:344:7: [value] replace body of Fixture::Nested::Deeper.depth with nil  (Fixture::Nested::Deeper.depth)  lines 344-344
+8aa9d5b9210d  lib/more.rb:344:7: [value] replace body of Fixture::Nested::Deeper.depth with 0  (Fixture::Nested::Deeper.depth)  lines 344-344
+268 mutants over 3 files, 75 methods
 skipped Fixture::Calc#abstract: template stub  lib/calc.rb:31
 skipped Fixture::Calc#logger: logging helper  lib/calc.rb:51
-skipped Fixture::Edge#log_result: logging only  lib/edge.rb:31
-skipped Fixture::Edge#warn_if_slow: logging only  lib/edge.rb:35
-skipped Fixture::Edge#fleeting: defined inside a block  lib/edge.rb:42
-skipped Fixture::Edge#logger: logging helper  lib/edge.rb:49
+skipped Fixture::Edge#log_result: logging only  lib/edge.rb:43
+skipped Fixture::Edge#warn_if_slow: logging only  lib/edge.rb:47
+skipped Fixture::Edge#fleeting: defined inside a block  lib/edge.rb:54
+skipped Fixture::Edge#logger: logging helper  lib/edge.rb:61
 skipped Fixture::More#to_s: arid method name  lib/more.rb:195
 skipped Fixture::More#described_for_log: only used in logging  lib/more.rb:223
 skipped Fixture::More#settings: only used in logging  lib/more.rb:236
 skipped Fixture::More#log: logging helper  lib/more.rb:245
 skipped Fixture::More#logger: logging helper  lib/more.rb:249
 skipped Fixture::More#log_error: logging helper  lib/more.rb:253
-skipped Fixture#registered: defined inside a block  lib/more.rb:308
-skipped Fixture#foreign: explicit receiver  lib/more.rb:341
+skipped Fixture#registered: defined inside a block  lib/more.rb:316
+skipped Fixture#foreign: explicit receiver  lib/more.rb:349

@@ -53,7 +53,7 @@ module Mutato
 
       # The disabling literal repeats a deletion, or for a memo guard only skips a cache.
       def literals(node)
-        disabled = visitor.walk.deleted.include?(node) || Nodes.memo_guard?(node)
+        disabled = visitor.walk.deleted.include?(node) || MemoGuard.match?(node)
         return %w[true false] unless Nodes.else_less?(node) && disabled
 
         node.is_a?(Prism::IfNode) ? %w[true] : %w[false]
