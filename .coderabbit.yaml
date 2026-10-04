@@ -1,0 +1,108 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# CI already enforces RuboCop, Reek, Flay, ShellCheck, the changelog and mutato on itself;
+# CodeRabbit is here for what those cannot see.
+language: en-GB
+tone_instructions: >-
+  Brief and direct, plain ASCII. State the defect, its consequence and a concrete failure
+  case with file:line; no praise, no summaries of what the diff does.
+
+reviews:
+  profile: chill
+  request_changes_workflow: false
+  # The PR description is the author's own.
+  high_level_summary: false
+  high_level_summary_in_walkthrough: true
+  review_status: true
+  collapse_walkthrough: true
+  sequence_diagrams: false
+  estimate_code_review_effort: false
+  assess_linked_issues: false
+  related_issues: false
+  related_prs: false
+  suggested_labels: false
+  suggested_reviewers: false
+  in_progress_fortune: false
+  poem: false
+  auto_review:
+    enabled: true
+    drafts: false
+    # Action and gem bumps: CI judges them.
+    ignore_usernames:
+      - dependabot[bot]
+  path_filters:
+    - "!Gemfile.lock"
+    - "!.github/mutato.svg"
+    # The recorded listing, regenerated with RECORD=1 and reviewed as a diff.
+    - "!spec/fixtures/calc/mutants.txt"
+  path_instructions:
+    - path: "lib/**/*.rb"
+      instructions: >-
+        Ruby 3.2 and later; RSpec 3. Tests run in forked children that
+        end with exit!, so at_exit handlers never run there. Comments are few, one line each,
+        and only state what prevents a mistake: do not ask for docstrings or more comments.
+        A change users can notice needs a line under [Unreleased] in CHANGELOG.md.
+    - path: "exe/mutato"
+      instructions: >-
+        Runs before the project's bundle and code load, and ends with exit! so that the
+        project's at_exit handlers never run.
+    - path: "spec/fixtures/**"
+      instructions: >-
+        Mutation targets for mutato's own specs: missing tests, odd code and failing or
+        broken files are deliberate, and the specs pin their line numbers. Flag only a change
+        that breaks what a spec relies on.
+    - path: "spec/**/*.rb"
+      instructions: >-
+        One expectation per example and the RSpec style RuboCop enforces; tests marked
+        subprocess run mutato in another process.
+    - path: ".github/workflows/*.yml"
+      instructions: >-
+        Actions pinned to full commit SHAs with the version in a comment; the workflow token
+        is read-only unless a job needs more.
+    - path: "CHANGELOG.md"
+      instructions: >-
+        Keep a Changelog 1.1.0: entries under [Unreleased] in Added, Changed, Deprecated,
+        Removed, Fixed or Security, written for users of the gem.
+  pre_merge_checks:
+    docstrings:
+      mode: "off"
+    title:
+      mode: warning
+      requirements: >-
+        At most 50 characters, capitalized, imperative mood, no final period.
+    description:
+      mode: "off"
+    issue_assessment:
+      mode: "off"
+  finishing_touches:
+    docstrings:
+      enabled: false
+  tools:
+    # Already run by CI, against the repository's own configuration.
+    rubocop:
+      enabled: false
+    shellcheck:
+      enabled: false
+    languagetool:
+      enabled: false
+    markdownlint:
+      enabled: false
+    actionlint:
+      enabled: true
+    zizmor:
+      enabled: true
+    gitleaks:
+      enabled: true
+    github-checks:
+      enabled: true
+
+chat:
+  auto_reply: true
+  art: false
+
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - CONTRIBUTING.md
+  learnings:
+    scope: local
