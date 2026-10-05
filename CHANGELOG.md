@@ -6,6 +6,8 @@ Notable changes for users of mutato. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-10-05
+
 ### Added
 
 - Minitest 5 and 6: `--test PATHS`, or by default when there is a `test`
