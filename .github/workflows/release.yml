@@ -16,6 +16,9 @@ jobs:
     permissions:
       contents: read
       id-token: write # trusted publishing: no RubyGems key is stored anywhere
+    env:
+      # Not the system gems, where the attestation's signer would load our json 3 and fail.
+      BUNDLE_PATH: vendor/bundle
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
