@@ -6,6 +6,13 @@ Notable changes for users of mutato. The format follows
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-05
+
+### Security
+
+- Releases carry a provenance attestation, which 0.1.0 and 0.2.0 lack: the
+  release workflow's signer failed on a json version the bundle installed.
+
 ## [0.2.0] - 2026-10-05
 
 ### Added

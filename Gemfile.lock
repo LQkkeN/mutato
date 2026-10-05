@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    mutato (0.2.0)
+    mutato (0.2.1)
       prism (>= 1.8)
 
 GEM
