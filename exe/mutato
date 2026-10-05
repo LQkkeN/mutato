@@ -4,7 +4,8 @@
 # Before mutato's own files load, so that it can run on itself.
 require "coverage"
 Coverage.start(lines: true) unless Coverage.running?
-require "bundler/setup" if File.exist?("Gemfile")
+# Bundler's own Gemfile lookup; it may restart the process, so here, while ARGV is intact.
+require "bundler/setup"
 begin
   require_relative "../lib/mutato"
 rescue LoadError => error

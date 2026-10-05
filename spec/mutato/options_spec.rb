@@ -16,7 +16,7 @@ RSpec.describe Mutato::Options do
       .to(%w[lib app])
   end
 
-  it("reads the spec arguments") { expect(options.spec_args).to eq(%w[spec/unit]) }
+  it("reads the spec arguments") { expect(options.test_args).to eq(%w[spec/unit]) }
   it("reads a file name") { expect(options.config).to eq("hooks.rb") }
   it("reads the diff source") { expect(options.diff).to eq("-") }
   it("reads the format") { expect(options.format).to eq("plain") }
@@ -39,14 +39,39 @@ RSpec.describe Mutato::Options do
     let(:argv) { ["--spec", "spec --pattern '**/*_test.rb'", "lib"] }
 
     it "reads them as a shell would" do
-      expect(options.spec_args).to eq(%w[spec --pattern **/*_test.rb])
+      expect(options.test_args).to eq(%w[spec --pattern **/*_test.rb])
     end
+  end
+
+  context "with --test" do
+    let(:argv) { ["--test", "test/unit", "lib"] }
+
+    it("runs Minitest") { expect(options).to be_minitest }
+    it("reads the test paths") { expect(options.test_args).to eq(%w[test/unit]) }
+  end
+
+  context "with a test directory and no spec directory" do
+    let(:argv) { %w[lib] }
+
+    before { allow(Dir).to receive(:exist?) { |path| path == "test" } }
+
+    it("runs Minitest") { expect(options).to be_minitest }
+    it("looks for tests in test") { expect(options.test_args).to eq(%w[test]) }
+  end
+
+  context "with both a spec and a test directory" do
+    let(:argv) { %w[lib] }
+
+    before { allow(Dir).to receive(:exist?) { |path| %w[test spec].include?(path) } }
+
+    it("runs RSpec") { expect(options).not_to be_minitest }
   end
 
   {
     "an unknown genre, naming the genres" => [%w[--genre statements], "(genres: statement, "],
     "a negative count" => [%w[--limit -1], "--limit -1"],
-    "a negative sample" => [%w[--sample -2], "--sample -2"]
+    "a negative sample" => [%w[--sample -2], "--sample -2"],
+    "both frameworks" => [%w[--spec spec --test test], "--spec and --test"]
   }.each do |what, (flags, message)|
     it "refuses #{what}" do
       expect { described_class.parse(flags + %w[lib]) }
@@ -57,7 +82,8 @@ RSpec.describe Mutato::Options do
   context "without flags" do
     let(:argv) { %w[lib] }
 
-    it("looks for specs in spec") { expect(options.spec_args).to eq(%w[spec]) }
+    it("looks for specs in spec") { expect(options.test_args).to eq(%w[spec]) }
+    it("runs RSpec") { expect(options).not_to be_minitest }
     it("writes to mutato.out") { expect(options.out).to eq("mutato.out") }
     it("gives a mutant ten seconds at least") { expect(options.timeout_min).to eq(10.0) }
     it("has no config of its own") { expect(options.config).to be_nil }

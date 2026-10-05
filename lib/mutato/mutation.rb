@@ -53,6 +53,12 @@ module Mutato
       start_line..end_line
     end
 
+    # Its lines as the coverage line map names them.
+    def line_keys
+      path = File.expand_path(file)
+      span.map { |number| "#{path}:#{number}" }
+    end
+
     def record(ids)
       {
         id:,

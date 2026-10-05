@@ -7,5 +7,5 @@ RSpec.describe Mutato::CLI, :subprocess do
   let(:run) { FixtureRuns.run_in("broken", "run", "lib") }
 
   it("stops") { expect(run.status.exitstatus).to eq(1) }
-  it("says why") { expect(run.stderr).to include("spec files failed to load") }
+  it("says why") { expect(run.stderr).to include("test files failed to load") }
 end

@@ -2,7 +2,7 @@ module Fixture
   class Edge
     def codes
       [
-        1, # one
+        1, # één
         2, # two
       ]
     end
@@ -19,6 +19,18 @@ module Fixture
       return @cached if @cached
 
       @cached = codes.size
+    end
+
+    def checked
+      return @checked if defined?(@checked)
+
+      @checked = codes.first
+    end
+
+    def known
+      return @known unless @known.nil?
+
+      @known = codes.last
     end
 
     def shout(x)

@@ -21,6 +21,13 @@ module Mutato
       durations.size == failed.size
     end
 
+    # Of the tests that run these lines, whether most fail: too few would be left to judge.
+    def mostly_failed?(keys)
+      ids = keys.flat_map { |key| line_map.fetch(key, []) }
+        .uniq
+      (ids & failed).size * 2 > ids.size
+    end
+
     # Only tests that ran and passed can judge a mutant; a group hook may credit others.
     def baseline(**rest)
       judges = (durations.keys - failed).to_set

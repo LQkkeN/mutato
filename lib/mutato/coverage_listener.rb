@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require "coverage"
-require_relative "coverage_listener/tally"
+require_relative "tally"
 
 module Mutato
-  # Each read clears the counters, so one read per example gives exactly its lines.
   class CoverageListener
     EVENTS = %i[example_group_started example_started example_finished].freeze
     public_constant :EVENTS
@@ -29,18 +27,16 @@ module Mutato
     end
 
     def example_finished(notification)
-      @tally.finish(notification.example, Clock.since(@started), read_hits)
+      example = notification.example
+      id = example.id
+      @tally.finish(id, Clock.since(@started), read_hits)
+      @tally.failed << id if example.execution_result.status == :failed
     end
 
     private
 
     def read_hits
-      Coverage.result(stop: false, clear: true).flat_map do |path, data|
-        next [] unless path.start_with?(*@prefixes)
-
-        @tally.seen << path
-        Hits.keys(path, data)
-      end
+      @tally.read(@prefixes)
     end
   end
 end

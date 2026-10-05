@@ -38,7 +38,7 @@ reviews:
   path_instructions:
     - path: "lib/**/*.rb"
       instructions: >-
-        Ruby 3.2 and later; RSpec 3. Tests run in forked children that
+        Ruby 3.2 and later; RSpec 3 and Minitest 5 and 6. Tests run in forked children that
         end with exit!, so at_exit handlers never run there. Comments are few, one line each,
         and only state what prevents a mistake: do not ask for docstrings or more comments.
         A change users can notice needs a line under [Unreleased] in CHANGELOG.md.

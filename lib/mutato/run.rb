@@ -20,9 +20,15 @@ module Mutato
 
     def in_child(ids, budget)
       install
-      checked(Watchdog.new(@suite.adapter, budget).run(ids))
+      done(checked(Watchdog.new(@suite.adapter, budget).run(ids)))
     rescue Installer::Unviable => error
       { outcome: :unviable, detail: error.message }
+    end
+
+    # The framework's own cleanup comes after the watchdog: it is not a test's to time out.
+    def done(verdict)
+      @suite.adapter.child_done
+      verdict
     end
 
     def install
@@ -30,7 +36,7 @@ module Mutato
 
       @installed = Installer.install(
         @mutation.subject,
-        @mutation.mutated_source(File.read(@mutation.file))
+        @mutation.mutated_source(File.read(@mutation.file, encoding: "UTF-8"))
       )
     end
 

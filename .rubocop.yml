@@ -155,7 +155,6 @@ Style/GlobalStdStream:
 # reopens its parent for that one constant; the parent is no static class.
 Style/StaticClass:
   Exclude:
-    - lib/mutato/coverage_listener/tally.rb
     - lib/mutato/subjects/scope.rb
     - lib/mutato/visitor/cursor.rb
     - lib/mutato/visitor/walk.rb

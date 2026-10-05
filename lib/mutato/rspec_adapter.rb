@@ -1,32 +1,25 @@
 # frozen_string_literal: true
 
-require "coverage"
+require_relative "result"
 require_relative "rspec_adapter/progress"
-require_relative "rspec_adapter/result"
 
 module Mutato
   # RSpec is one per process, so this is a module, not a class.
   module RSpecAdapter
     module_function
 
+    # Coverage before spec_helper, so that the project's files load instrumented.
     def boot(args)
-      # Cached iseqs cannot carry coverage.
-      ENV["DISABLE_BOOTSNAP_COMPILE_CACHE"] ||= "1"
-      start_coverage
+      Tally.start
       # Here, not at load: the project's bundle provides rspec.
       require "rspec/core"
       setup(RSpec::Core::Runner.new(RSpec::Core::ConfigurationOptions.new(args)))
     end
 
-    # Before spec_helper, so files load instrumented; lines only, as method counters slow calls.
-    def start_coverage
-      Coverage.start(lines: true) unless Coverage.running?
-    end
-
     def setup(runner)
       @runner = runner
       runner.setup($stderr, $stdout)
-      RSpec.configuration.backtrace_exclusion_patterns << %r{/mutato/}
+      RSpec.configuration.backtrace_exclusion_patterns << FRAMES
     end
 
     def locations
@@ -47,12 +40,16 @@ module Mutato
       RSpec.world.wants_to_quit = true
     end
 
+    # Each child's run_specs runs the after(:suite) hooks already.
+    def suite_done; end
+
+    def child_done; end
+
     # Child only.
     def baseline(prefixes)
       listener = CoverageListener.new(prefixes)
       RSpec.configuration.reporter.register_listener(listener, *CoverageListener::EVENTS)
       quiet(fail_fast: false)
-      Coverage.result(stop: false, clear: true)
       Measure.new(status: run_all, **listener.tally.to_h)
     end
 

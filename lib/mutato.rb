@@ -8,6 +8,8 @@ require_relative "mutato/generation"
 require_relative "mutato/generator"
 require_relative "mutato/genres"
 require_relative "mutato/installer"
+require_relative "mutato/integrations"
+require_relative "mutato/memo_guard"
 require_relative "mutato/mutation"
 require_relative "mutato/nodes"
 require_relative "mutato/privates"
@@ -19,6 +21,10 @@ require_relative "mutato/version"
 require_relative "mutato/visitor"
 
 module Mutato
+  # mutato's own frames, wherever it is installed: its library and its executable.
+  FRAMES = %r{\A#{Regexp.escape(__dir__)}/mutato[/.]|(?:\A|/)exe/mutato:}
+  public_constant :FRAMES
+
   def self.config
     @config ||= Config.new
   end
@@ -47,9 +53,5 @@ module Mutato
     config.arid(*names)
   end
 
-  # A forked child must not share the parent's database sockets.
-  before_fork { Sequel::DATABASES.each(&:disconnect) if defined?(Sequel) }
-  before_fork do
-    ActiveRecord::Base.connection_handler.clear_all_connections! if defined?(ActiveRecord)
-  end
+  Integrations.install
 end

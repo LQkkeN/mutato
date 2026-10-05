@@ -52,6 +52,48 @@ RSpec.describe Mutato::CLI, :subprocess do
     it("says so") { expect(run.stderr).to include("control OK") }
   end
 
+  context "without a locale, on UTF-8 source" do
+    let(:unset) { { "LANG" => nil, "LC_ALL" => nil, "LC_CTYPE" => nil } }
+    let(:run) { FixtureRuns.run("list", "lib", env: unset) }
+
+    it("reads it") { expect(run.status).to be_success, run.stderr }
+  end
+
+  context "with --test, on Minitest" do
+    let(:run) { FixtureRuns.run("run", "lib", "--test", "test") }
+    let(:labels) { run.labels_by_outcome }
+
+    it("exits 2 when mutants survive") { expect(run.status.exitstatus).to eq(2), run.stderr }
+    it("catches most mutants") { expect(labels.fetch("caught").size).to be > 10 }
+
+    it "misses the untested branch" do
+      expect(labels.fetch("missed")).to include(a_string_including("return high if x > high"))
+    end
+
+    it "neither crashes nor loses a mutant" do
+      expect(labels.keys).not_to include("crashed", "unviable", "overwritten")
+    end
+
+    it "passes its control" do
+      control = FixtureRuns.run("control", "lib", "--test", "test")
+      expect(control.stderr).to include("control OK")
+    end
+
+    it "runs the after_run blocks once, in the parent, as Minitest does in a fork" do
+      expect(Dir.glob(File.join(run.out, "after_run-*")).size).to eq(1)
+    end
+
+    it "runs them when the run stops while loading the tests" do
+      stopped = FixtureRuns.run("run", "lib", "--test", "test broken_test")
+      expect(Dir.glob(File.join(stopped.out, "after_run-*")).size).to eq(1), stopped.stderr
+    end
+
+    it "runs them in every child too when the project allows it" do
+      allowed = FixtureRuns.run("run", "lib", "--test", "test", "--config", "allow_fork.mutato.rb")
+      expect(Dir.glob(File.join(allowed.out, "after_run-*")).size).to be > 2
+    end
+  end
+
   context "with --diff" do
     let(:run) { FixtureRuns.run("run", "lib", "--diff", "-", stdin: FixtureRuns.clamp_diff) }
     let(:outcomes) { run.outcomes }

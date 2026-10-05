@@ -18,6 +18,7 @@ RSpec.describe Mutato::Mutation do
   end
 
   it("spans the lines of its statement") { expect(minus.span).to eq(10..10) }
+  it("names its lines as coverage does") { expect(minus.line_keys).to eq(["#{OneTestSuite::CALC}:10"]) }
   it("changes the file's source") { expect(minus.apply(source).lines[9]).to eq("      a - b\n") }
 
   it "gives the method's own source, changed" do
