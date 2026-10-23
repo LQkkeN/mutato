@@ -14,7 +14,7 @@ jobs:
     timeout-minutes: 15
     environment: release
     permissions:
-      contents: read
+      contents: write # the GitHub release
       id-token: write # trusted publishing: no RubyGems key is stored anywhere
     env:
       # Not the system gems, where the attestation's signer would load our json 3 and fail.
@@ -40,3 +40,11 @@ jobs:
             exit 1
           }
       - uses: rubygems/release-gem@7f9650160c1a4e7989fdc9855807bdbd421d8b6b # v1.4.1
+      - name: A GitHub release with the version's changelog section
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version=${GITHUB_REF_NAME#v}
+          awk -v version="$version" -f .github/release-notes.awk CHANGELOG.md >"$RUNNER_TEMP/notes.md"
+          gh release create "$GITHUB_REF_NAME" --verify-tag --title "mutato $version" \
+            --notes-file "$RUNNER_TEMP/notes.md"
