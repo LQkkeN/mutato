@@ -46,4 +46,5 @@ git config core.hooksPath .githooks
    git push origin vX.Y.Z
    ```
 
-3. Approve the `release` environment; the workflow publishes to RubyGems.
+3. Approve the `release` environment; the workflow publishes to RubyGems and
+   makes a GitHub release of the tag, with its changelog section as notes.
